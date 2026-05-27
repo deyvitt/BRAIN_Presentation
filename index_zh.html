@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRAIN - 大语言模型持久记忆层 | 投资者演示</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .slide {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 80px;
+            position: relative;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .slide-content {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff 0%, #a855f7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            border-left: 4px solid #a855f7;
+            padding-left: 20px;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #a855f7;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: #c4b5fd;
+            margin-bottom: 2rem;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin: 40px 0;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 28px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.12);
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .table-container {
+            background: rgba(255,255,255,0.05);
+            border-radius: 16px;
+            overflow-x: auto;
+            margin: 30px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 16px 20px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        th {
+            background: rgba(168,85,247,0.2);
+            font-weight: 600;
+            color: #c4b5fd;
+        }
+
+        .highlight {
+            color: #22c55e;
+            font-weight: 600;
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 30px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #a855f7;
+        }
+
+        .stat-label {
+            color: #c4b5fd;
+            margin-top: 8px;
+        }
+
+        .flow-diagram {
+            background: rgba(0,0,0,0.3);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .flow-step {
+            display: inline-block;
+            background: rgba(168,85,247,0.2);
+            border-radius: 40px;
+            padding: 12px 24px;
+            margin: 8px;
+            font-size: 0.9rem;
+        }
+
+        .arrow {
+            font-size: 1.5rem;
+            margin: 0 10px;
+            color: #a855f7;
+        }
+
+        .nav-controls {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            gap: 12px;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: rgba(168,85,247,0.8);
+            border: none;
+            color: white;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-btn:hover {
+            background: #a855f7;
+            transform: scale(1.05);
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #a855f7, #e879f9);
+            transition: width 0.3s ease;
+            z-index: 1000;
+        }
+
+        .slide-counter {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: rgba(0,0,0,0.5);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            z-index: 1000;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #22c55e;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 40px 24px;
+            }
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 1.8rem; }
+            .stat-grid { grid-template-columns: 1fr 1fr; }
+            .card-grid { grid-template-columns: 1fr; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .slide {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .lang-switch {
+            position: fixed;
+            top: 20px;
+            right: 90px;
+            background: rgba(0,0,0,0.5);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            z-index: 1000;
+        }
+        .lang-switch a {
+            color: white;
+            text-decoration: none;
+        }
+        .lang-switch a:hover {
+            color: #a855f7;
+        }
+    </style>
+</head>
+<body>
+    <div class="lang-switch">
+        🌐 <a href="index.html">English</a> | <strong>中文</strong>
+    </div>
+    <div class="progress-bar" id="progressBar"></div>
+    <div class="slide-counter" id="slideCounter">第 1 / 12 页</div>
+    <div class="nav-controls">
+        <button class="nav-btn" id="prevBtn">←</button>
+        <button class="nav-btn" id="nextBtn">→</button>
+    </div>
+
+    <div class="slides-container" id="slidesContainer">
+        <!-- SLIDE 1: Title -->
+        <section class="slide">
+            <div class="slide-content" style="text-align: center;">
+                <div style="font-size: 4rem; margin-bottom: 1rem;">🧠</div>
+                <h1>BRAIN</h1>
+                <div class="subtitle">大语言模型持久记忆层</div>
+                <p style="font-size: 1.2rem; color: #c4b5fd; margin-top: 2rem;">投资者演示文稿</p>
+                <p style="margin-top: 3rem; font-size: 0.9rem; color: rgba(255,255,255,0.5);">机密文件</p>
+            </div>
+        </section>
+
+        <!-- SLIDE 2: The Problem -->
+        <section class="slide">
+            <div class="slide-content">
+                <h2>⚠️ 大语言模型的记忆危机</h2>
+                <div class="flow-diagram">
+                    <div class="flow-step">用户："我是素食者"</div>
+                    <span class="arrow">→</span>
+                    <div class="flow-step">上下文窗口（10万tokens）</div>
+                    <span class="arrow">→</span>
+                    <div class="flow-step" style="background: rgba(239,68,68,0.3);">❌ 忘记！</div>
+                </div>
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-icon">📝</div>
+                        <div class="card-title">上下文窗口填满</div>
+                        <p>超出限制后信息丢失，用户必须重复说明</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">💰</div>
+                        <div class="card-title">O(n²) 注意力成本</div>
+                        <p>窗口越大 = 计算成本指数级增长</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🎯</div>
+                        <div class="card-title">无选择性记忆</div>
+                        <p>大语言模型要么全记住，要么全忘记，无法区分优先级</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 3: The Hidden Cost -->
+        <section class="slide">
+            <div class="slide-content">
+                <h2>💰 遗忘的隐藏成本</h2>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr><th>场景</th><th>Tokens</th><th>成本（GPT-4）</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>用户描述问题</td><td>100</td><td>$0.003</td></tr>
+                            <tr><td>客服提问</td><td>50</td><td>$0.0015</td></tr>
+                            <tr style="color: #ef4444;"><td>用户重复说明（被遗忘！）</td><td>100</td><td>$0.003</td></tr>
+                            <tr><td>客服解决问题</td><td>200</td><td>$0.006</td></tr>
+                            <tr style="background: rgba(34,197,94,0.1);"><td><strong>无BRAIN 总计</strong></td><td><strong>450</strong></td><td><strong>$0.0135</strong></td></tr>
+                            <tr style="background: rgba(34,197,94,0.2);"><td><strong>有BRAIN 总计</strong></td><td><strong>350</strong></td><td><strong>$0.0105</strong></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="stat-grid">
+                    <div class="stat-card"><div class="stat-number">22-30%</div><div class="stat-label">Token 减少</div></div>
+                    <div class="stat-card"><div class="stat-number">$3200万</div><div class="stat-label">大型服务商年节省</div></div>
+                    <div class="stat-card"><div class="stat-number">100X+</div><div class="stat-label">投资回报率</div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 4: How BRAIN Works -->
+        <section class="slide">
+            <div class="slide-content">
+                <h2>🧠 BRAIN 工作原理</h2>
+                <div class="flow-diagram">
+                    <div class="flow-step">LLM 张量</div>
+                    <span class="arrow">→</span>
+                    <div class="flow-step">脉冲</div>
+                    <span class="arrow">→</span>
+                    <div class="flow-step">VNI 网络</div>
+                    <span class="arrow">→</span>
+                    <div class="flow-step">精炼张量</div>
+                </div>
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-icon">🔍</div>
+                        <div class="card-title">模式检测</div>
+                        <p>在张量激活中自动检测"素食者"模式</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🌱</div>
+                        <div class="card-title">VNI 生成</div>
+                        <p>创建 VNI_素食者，初始强度 0.3</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">💪</div>
+                        <div class="card-title">赫布学习</div>
+                        <p>好的结果将 VNI 强度提升至 0.9</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">⚡</div>
+                        <div class="card-title">自发回忆</div>
+                        <p>下次对话：无需提醒，VNI 自动激活！</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 5: Value Proposition -->
+        <section class="slide">
+            <div class="slide-content">
+                <h2>✨ BRAIN 提供的价值</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-icon">💰</div>
+                        <div class="card-title">30-40% 成本节省</div>
+                        <p>无需重复遗忘的信息。固定开销，不限对话长度。</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🧠</div>
+                        <div class="card-title">持久记忆</div>
+                        <p>跨会话记忆（数天/周/月）。永不丢失。</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🎯</div>
+                        <div class="card-title">自发回忆</div>
+                        <p>无需提示，记忆自动触发。</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🔄</div>
+                        <div class="card-title">模型无关</div>
+                        <p>适用于任何 Transformer 模型。无锁定。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 6: Competitive Positioning -->
+        <section class="slide">
+            <div class="slide-content">
+                <h2>🏆 BRAIN 的独特优势</h2>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr><th>解决方案</th><th>记忆类型</th><th>自发回忆</th><th>跨会话记忆</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>微调</td><td>模型权重</td><td>❌ 否</td><td>❌ 否</td></tr>
+                            <tr><td>RAG</td><td>外部数据库</td><td>❌ 否</td><td>❌ 否</td></tr>
+                            <tr><td>向量数据库</td><td>外部数据库</td><td>❌ 否</td><td>❌ 否</td></tr>
+                            <tr><td>上下文窗口</td><td>窗口内</td><td>❌ 否</td><td>❌ 否</td></tr>
+                            <tr style="background: rgba(168,85,247,0.2);"><td><strong>BRAIN</strong></td><td><strong>VNI 网络</strong></td><td><strong>✅ 是</strong></td><td><strong>✅ 是</strong></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 7: Economics -->
+        <section class="slide">
+            <div class="slide-content">
+                <h2>📊 经济效益</h2>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr><th>指标</th><th>无BRAIN</th><th>有BRAIN</th><th>节省</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>平均 tokens/对话</td><td>1,000</td><td>700</td><td class="highlight">30%</td></tr>
+                            <tr><td>日 token 量（1000万用户）</td><td>100亿</td><td>70亿</td><td class="highlight">30亿</td></tr>
+                            <tr><td>日成本（GPT-4等效）</td><td>$30万</td><td>$21万</td><td class="highlight">$9万</td></tr>
+                            <tr><td><strong>年成本</strong></td><td><strong>$1.095亿</strong></td><td><strong>$7660万</strong></td><td class="highlight"><strong>$3290万</strong></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card" style="margin-top: 20px; text-align: center;">
+                    <div class="stat-number" style="font-size: 1.8rem;">BRAIN 仅靠<span class="highlight">成本节省</span>就能收回投资</div>
+                    <div style="margin-top: 10px;">更优质的回复只是额外收益</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 8: Business Model -->
+        <section class="slide">
+            <div class="slide-content">
+                <h2>💼 商业模式</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-icon">☁️</div>
+                        <div class="card-title">第一层：远程 API</div>
+                        <p>按量付费<br> $0.50-$2.00 / 百万次请求<br> 免费额度：1万次/月</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🏢</div>
+                        <div class="card-title">第二层：企业 SDK</div>
+                        <p>私有化部署 • 编译二进制<br> $5万-$50万/年<br> 源代码托管</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🤝</div>
+                        <div class="card-title">第三层：战略合作</div>
+                        <p>收益分成<br> 股权合作<br> 定制集成</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 9: Market Opportunity -->
+        <section class="slide">
+            <div class="slide-content">
+                <h2>🌍 市场机会</h2>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr><th>细分市场</th><th>规模</th><th>BRAIN 机会</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>大语言模型服务商</td><td>500+</td><td>$5亿-$10亿</td></tr>
+                            <tr><td>企业大语言模型用户</td><td>10,000+</td><td>$20亿-$50亿</td></tr>
+                            <tr><td>机器人公司</td><td>1,000+</td><td>$5亿</td></tr>
+                            <tr><td>自动驾驶</td><td>100+</td><td>$5亿</td></tr>
+                            <tr><td><strong>总可寻址市场</strong></td><td></td><td class="highlight"><strong>$50亿-$100亿</strong></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 10: Current Status -->
+        <section class="slide">
+            <div class="slide-content">
+                <h2>📌 当前状态</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-icon">✅</div>
+                        <div class="card-title">已完成</div>
+                        <p>• 完整 BRAIN 引擎（2万+行代码）<br>• 工作原型<br>• 94-98% 张量保真度<br>• 硬件无关<br>• API 服务器（支持批处理）</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🔲</div>
+                        <div class="card-title">需要融资完成</div>
+                        <p>• 在5个开源大语言模型上验证<br>• 基准测试和性能分析<br>• 组建团队（3名工程师）<br>• 部署基础设施<br>• 获取首批10个客户</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 11: The Ask -->
+        <section class="slide">
+            <div class="slide-content">
+                <h2>🎯 融资需求</h2>
+                <div style="text-align: center; margin: 40px 0;">
+                    <div style="font-size: 4rem; font-weight: 800; color: #a855f7;">$50万</div>
+                    <div style="font-size: 1.2rem; margin-top: 10px;">对应 30% 股权</div>
+                </div>
+                <div class="stat-grid">
+                    <div class="stat-card"><div class="stat-number">40%</div><div class="stat-label">工程团队（3人）</div></div>
+                    <div class="stat-card"><div class="stat-number">20%</div><div class="stat-label">云基础设施</div></div>
+                    <div class="stat-card"><div class="stat-number">20%</div><div class="stat-label">销售与市场</div></div>
+                    <div class="stat-card"><div class="stat-number">20%</div><div class="stat-label">法务（专利）</div></div>
+                </div>
+                <div class="card" style="text-align: center; margin-top: 20px;">
+                    <p><strong>资金储备：</strong> 12-18个月 | <strong>目标：</strong> 12个月内年经常性收入超$100万</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 12: Closing -->
+        <section class="slide">
+            <div class="slide-content" style="text-align: center;">
+                <div style="font-size: 4rem; margin-bottom: 1rem;">🧠</div>
+                <h2>加入我们，共同构建大语言模型的记忆</h2>
+                <div style="margin-top: 3rem;">
+                    <p style="font-size: 1.2rem;">每一个大语言模型都有同样的问题：它会遗忘。</p>
+                    <p style="font-size: 1.2rem; margin-top: 0.5rem;">BRAIN 解决了这个问题。</p>
+                    <p style="font-size: 1.2rem; margin-top: 0.5rem; color: #a855f7;">30-40% 成本节省。持久记忆。</p>
+                    <p style="font-size: 1.2rem; margin-top: 0.5rem;">这是一个百亿市场机会。</p>
+                </div>
+                <div style="margin-top: 4rem;">
+                    <p>[您的姓名]</p>
+                    <p style="color: #c4b5fd;">[邮箱] | [电话]</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        const progressBar = document.getElementById('progressBar');
+        const slideCounter = document.getElementById('slideCounter');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        function updateSlides() {
+            slides.forEach((slide, index) => {
+                slide.style.display = index === currentSlide ? 'flex' : 'none';
+            });
+            const progress = ((currentSlide + 1) / totalSlides) * 100;
+            progressBar.style.width = `${progress}%`;
+            slideCounter.textContent = `第 ${currentSlide + 1} / ${totalSlides} 页`;
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                updateSlides();
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlides();
+            }
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
+        });
+
+        prevBtn.addEventListener('click', prevSlide);
+        nextBtn.addEventListener('click', nextSlide);
+
+        updateSlides();
+    </script>
+</body>
+</html>
