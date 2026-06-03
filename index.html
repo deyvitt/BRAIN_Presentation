@@ -283,7 +283,7 @@
 </div>
 
     <div class="progress-bar" id="progressBar"></div>
-    <div class="slide-counter" id="slideCounter">Slide 1 / 12</div>
+    <div class="slide-counter" id="slideCounter">Slide 1 / 13</div>
     <div class="nav-controls">
         <button class="nav-btn" id="prevBtn">←</button>
         <button class="nav-btn" id="nextBtn">→</button>
@@ -426,7 +426,44 @@
             </div>
         </section>
 
-        <!-- SLIDE 6: Competitive Positioning -->
+        <!-- NEW SLIDE 6: BRAIN Avoids False Recall -->
+        <section class="slide">
+            <div class="slide-content">
+                <h2>🧠 BRAIN Avoids False Recall</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-icon">❌</div>
+                        <div class="card-title">Standard LLM Memory</div>
+                        <p><strong>Semantic similarity only</strong> – retrieves any past fact with similar embedding, causing irrelevant recalls (e.g., “Hyperman” in a home renovation chat).</p>
+                        <div style="margin-top: 15px; padding: 10px; background: rgba(239,68,68,0.2); border-radius: 12px;">
+                            <span style="color: #ef4444;">⚠️ False Positive Example:</span> User discusses renovation → LLM says “What would Hyperman think?” (from a fictional story months ago).
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">✅</div>
+                        <div class="card-title">BRAIN with Hebbian Learning</div>
+                        <p><strong>Semantic similarity + learned synaptic weights</strong>. Associations only strengthen when user gives positive feedback. Irrelevant links remain weak or decay.</p>
+                        <div style="margin-top: 15px; padding: 10px; background: rgba(34,197,94,0.2); border-radius: 12px;">
+                            <span style="color: #22c55e;">✅ No false recall:</span> BRAIN never links “renovation” to “Hyperman” because no feedback reinforced that path.
+                        </div>
+                    </div>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead><tr><th>Feature</th><th>Standard RAG / Vector DB</th><th>BRAIN</th></tr></thead>
+                        <tbody>
+                            <tr><td>Retrieval basis</td><td>Static cosine similarity</td><td>Similarity × Hebbian strength (adapts)</td></tr>
+                            <tr><td>False positive rate</td><td>High – any past similar fact can intrude</td><td>Low – requires reinforced associations</td></tr>
+                            <tr><td>User correction</td><td>None – no learning from “that’s wrong”</td><td>✅ Negative feedback weakens synapses</td></tr>
+                            <tr><td>Cross-topic contamination</td><td>Common (e.g., Hyperman in renovation)</td><td>Virtually eliminated</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p style="margin-top: 20px; font-size: 0.95rem; color: #c4b5fd;">📌 This is a <strong>key differentiator</strong> – frontier LLMs with persistent memory still suffer from irrelevant recalls. BRAIN solves it.</p>
+            </div>
+        </section>
+
+        <!-- SLIDE 7: Competitive Positioning -->
         <section class="slide">
             <div class="slide-content">
                 <h2>🏆 Why BRAIN is Different</h2>
@@ -445,7 +482,7 @@
             </div>
         </section>
 
-        <!-- SLIDE 7: Economics -->
+        <!-- SLIDE 8: Economics -->
         <section class="slide">
             <div class="slide-content">
                 <h2>📊 The Math</h2>
@@ -467,7 +504,7 @@
             </div>
         </section>
 
-        <!-- SLIDE 8: Business Model -->
+        <!-- SLIDE 9: Business Model -->
         <section class="slide">
             <div class="slide-content">
                 <h2>💼 Business Model</h2>
@@ -491,7 +528,7 @@
             </div>
         </section>
 
-        <!-- SLIDE 9: Market Opportunity -->
+        <!-- SLIDE 10: Market Opportunity -->
         <section class="slide">
             <div class="slide-content">
                 <h2>🌍 Total Addressable Market</h2>
@@ -510,7 +547,7 @@
             </div>
         </section>
 
-        <!-- SLIDE 10: Current Status -->
+        <!-- SLIDE 11: Current Status -->
         <section class="slide">
             <div class="slide-content">
                 <h2>📌 Current Status</h2>
@@ -529,7 +566,7 @@
             </div>
         </section>
 
-        <!-- SLIDE 11: The Ask -->
+        <!-- SLIDE 12: The Ask -->
         <section class="slide">
             <div class="slide-content">
                 <h2>🎯 The Ask</h2>
@@ -549,7 +586,7 @@
             </div>
         </section>
 
-        <!-- SLIDE 12: Closing -->
+        <!-- SLIDE 13: Closing -->
         <section class="slide">
             <div class="slide-content" style="text-align: center;">
                 <div style="font-size: 4rem; margin-bottom: 1rem;">🧠</div>
@@ -613,4 +650,4 @@
         updateSlides();
     </script>
 </body>
-</html> 
+</html>

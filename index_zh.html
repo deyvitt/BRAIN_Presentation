@@ -282,7 +282,7 @@
         🌐 <a href="index.html">English</a> | <strong>中文</strong>
     </div>
     <div class="progress-bar" id="progressBar"></div>
-    <div class="slide-counter" id="slideCounter">第 1 / 12 页</div>
+    <div class="slide-counter" id="slideCounter">第 1 / 13 页</div>
     <div class="nav-controls">
         <button class="nav-btn" id="prevBtn">←</button>
         <button class="nav-btn" id="nextBtn">→</button>
@@ -343,7 +343,7 @@
                         <tbody>
                             <tr><td>用户描述问题</td><td>100</td><td>$0.003</td></tr>
                             <tr><td>客服提问</td><td>50</td><td>$0.0015</td></tr>
-                            <tr style="color: #ef4444;"><td>用户重复说明（被遗忘！）</td><td>100</td><td>$0.003</td></tr>
+                            <tr><td style="color: #ef4444;">用户重复说明（被遗忘！）</td><td>100</td><td style="color: #ef4444;">$0.003</td></tr>
                             <tr><td>客服解决问题</td><td>200</td><td>$0.006</td></tr>
                             <tr style="background: rgba(34,197,94,0.1);"><td><strong>无BRAIN 总计</strong></td><td><strong>450</strong></td><td><strong>$0.0135</strong></td></tr>
                             <tr style="background: rgba(34,197,94,0.2);"><td><strong>有BRAIN 总计</strong></td><td><strong>350</strong></td><td><strong>$0.0105</strong></td></tr>
@@ -425,7 +425,44 @@
             </div>
         </section>
 
-        <!-- SLIDE 6: Competitive Positioning -->
+        <!-- NEW SLIDE 6: BRAIN Avoids False Recall (Chinese) -->
+        <section class="slide">
+            <div class="slide-content">
+                <h2>🧠 BRAIN 避免错误回忆</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-icon">❌</div>
+                        <div class="card-title">标准大语言模型记忆</div>
+                        <p><strong>仅基于语义相似度</strong> – 任何嵌入相似的历史事实都可能被召回，导致不相关的回忆（例如装修对话中出现“超人”）。</p>
+                        <div style="margin-top: 15px; padding: 10px; background: rgba(239,68,68,0.2); border-radius: 12px;">
+                            <span style="color: #ef4444;">⚠️ 错误示例：</span> 用户讨论装修 → 模型说“超人对此怎么看？”（来自几个月前的虚构故事）。
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">✅</div>
+                        <div class="card-title">BRAIN + 赫布学习</div>
+                        <p><strong>语义相似度 + 可学习的突触权重</strong>。只有用户给予正面反馈时关联才会增强。无关连接保持微弱或逐渐衰减。</p>
+                        <div style="margin-top: 15px; padding: 10px; background: rgba(34,197,94,0.2); border-radius: 12px;">
+                            <span style="color: #22c55e;">✅ 无错误召回：</span> BRAIN 永远不会将“装修”关联到“超人”，因为没有反馈强化过这条路径。
+                        </div>
+                    </div>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead><tr><th>特性</th><th>标准 RAG / 向量数据库</th><th>BRAIN</th></tr></thead>
+                        <tbody>
+                            <tr><td>检索依据</td><td>静态余弦相似度</td><td>相似度 × 赫布强度（自适应）</td></tr>
+                            <tr><td>误报率</td><td>高 – 任何相似历史事实都可能侵入</td><td>低 – 需要经过强化的关联</td></tr>
+                            <tr><td>用户纠错</td><td>无 – 无法从“这是错的”中学习</td><td>✅ 负面反馈会削弱突触</td></tr>
+                            <tr><td>跨主题污染</td><td>常见（例如装修对话中的超人）</td><td>几乎消除</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p style="margin-top: 20px; font-size: 0.95rem; color: #c4b5fd;">📌 这是 <strong>关键差异化优势</strong> – 前沿大语言模型即使拥有持久记忆，仍然存在不相关回忆。BRAIN 解决了这个问题。</p>
+            </div>
+        </section>
+
+        <!-- SLIDE 7: Competitive Positioning -->
         <section class="slide">
             <div class="slide-content">
                 <h2>🏆 BRAIN 的独特优势</h2>
@@ -446,7 +483,7 @@
             </div>
         </section>
 
-        <!-- SLIDE 7: Economics -->
+        <!-- SLIDE 8: Economics -->
         <section class="slide">
             <div class="slide-content">
                 <h2>📊 经济效益</h2>
@@ -470,7 +507,7 @@
             </div>
         </section>
 
-        <!-- SLIDE 8: Business Model -->
+        <!-- SLIDE 9: Business Model -->
         <section class="slide">
             <div class="slide-content">
                 <h2>💼 商业模式</h2>
@@ -494,7 +531,7 @@
             </div>
         </section>
 
-        <!-- SLIDE 9: Market Opportunity -->
+        <!-- SLIDE 10: Market Opportunity -->
         <section class="slide">
             <div class="slide-content">
                 <h2>🌍 市场机会</h2>
@@ -515,7 +552,7 @@
             </div>
         </section>
 
-        <!-- SLIDE 10: Current Status -->
+        <!-- SLIDE 11: Current Status -->
         <section class="slide">
             <div class="slide-content">
                 <h2>📌 当前状态</h2>
@@ -534,7 +571,7 @@
             </div>
         </section>
 
-        <!-- SLIDE 11: The Ask -->
+        <!-- SLIDE 12: The Ask -->
         <section class="slide">
             <div class="slide-content">
                 <h2>🎯 融资需求</h2>
@@ -554,7 +591,7 @@
             </div>
         </section>
 
-        <!-- SLIDE 12: Closing -->
+        <!-- SLIDE 13: Closing -->
         <section class="slide">
             <div class="slide-content" style="text-align: center;">
                 <div style="font-size: 4rem; margin-bottom: 1rem;">🧠</div>
