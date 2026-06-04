@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BRAIN - Persistent Memory Layer for LLMs | Investor Presentation</title>
     <style>
+        /* Your existing styles remain unchanged */
         * {
             margin: 0;
             padding: 0;
@@ -275,6 +276,28 @@
         .slide {
             animation: fadeInUp 0.6s ease-out;
         }
+
+        /* Video styles - ADD THIS NEW SECTION */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            background: #000;
+            border-radius: 12px;
+            margin: 20px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
     </style>
 </head>
 <body>
@@ -297,10 +320,23 @@
                 <h1>BRAIN</h1>
                 <div class="subtitle">Persistent Memory Layer for LLMs</div>
                 <p style="font-size: 1.2rem; color: #c4b5fd; margin-top: 2rem;">Investor Presentation</p>
-                <p style="margin-top: 3rem; font-size: 0.9rem; color: rgba(255,255,255,0.5);">Confidential</p>
+                
+                <!-- DEMO VIDEO SECTION -->
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/i9UOOXRKqdY" 
+                            title="BRAIN Demo Video - Qwen2.5 vs Qwen2.5 with BRAIN"
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                    </iframe>
+                </div>
+                <p style="font-size: 0.9rem; color: #c4b5fd; margin-top: 10px;">Watch the live demo: Standard Qwen2.5 vs Qwen2.5 + BRAIN</p>
+                
+                <p style="margin-top: 2rem; font-size: 0.9rem; color: rgba(255,255,255,0.5);">Confidential</p>
             </div>
         </section>
 
+        <!-- Rest of your slides (2-13) remain unchanged -->
         <!-- SLIDE 2: The Problem -->
         <section class="slide">
             <div class="slide-content">
@@ -434,9 +470,9 @@
                     <div class="card">
                         <div class="card-icon">❌</div>
                         <div class="card-title">Standard LLM Memory</div>
-                        <p><strong>Semantic similarity only</strong> – retrieves any past fact with similar embedding, causing irrelevant recalls (e.g., “Hyperman” in a home renovation chat).</p>
+                        <p><strong>Semantic similarity only</strong> – retrieves any past fact with similar embedding, causing irrelevant recalls (e.g., "Hyperman" in a home renovation chat).</p>
                         <div style="margin-top: 15px; padding: 10px; background: rgba(239,68,68,0.2); border-radius: 12px;">
-                            <span style="color: #ef4444;">⚠️ False Positive Example:</span> User discusses renovation → LLM says “What would Hyperman think?” (from a fictional story months ago).
+                            <span style="color: #ef4444;">⚠️ False Positive Example:</span> User discusses renovation → LLM says "What would Hyperman think?" (from a fictional story months ago).
                         </div>
                     </div>
                     <div class="card">
@@ -444,17 +480,19 @@
                         <div class="card-title">BRAIN with Hebbian Learning</div>
                         <p><strong>Semantic similarity + learned synaptic weights</strong>. Associations only strengthen when user gives positive feedback. Irrelevant links remain weak or decay.</p>
                         <div style="margin-top: 15px; padding: 10px; background: rgba(34,197,94,0.2); border-radius: 12px;">
-                            <span style="color: #22c55e;">✅ No false recall:</span> BRAIN never links “renovation” to “Hyperman” because no feedback reinforced that path.
+                            <span style="color: #22c55e;">✅ No false recall:</span> BRAIN never links "renovation" to "Hyperman" because no feedback reinforced that path.
                         </div>
                     </div>
                 </div>
                 <div class="table-container">
                     <table>
-                        <thead><tr><th>Feature</th><th>Standard RAG / Vector DB</th><th>BRAIN</th></tr></thead>
+                        <thead>
+                            <tr><th>Feature</th><th>Standard RAG / Vector DB</th><th>BRAIN</th></tr>
+                        </thead>
                         <tbody>
                             <tr><td>Retrieval basis</td><td>Static cosine similarity</td><td>Similarity × Hebbian strength (adapts)</td></tr>
                             <tr><td>False positive rate</td><td>High – any past similar fact can intrude</td><td>Low – requires reinforced associations</td></tr>
-                            <tr><td>User correction</td><td>None – no learning from “that’s wrong”</td><td>✅ Negative feedback weakens synapses</td></tr>
+                            <tr><td>User correction</td><td>None – no learning from "that's wrong"</td><td>✅ Negative feedback weakens synapses</td></tr>
                             <tr><td>Cross-topic contamination</td><td>Common (e.g., Hyperman in renovation)</td><td>Virtually eliminated</td></tr>
                         </tbody>
                     </table>
@@ -469,7 +507,9 @@
                 <h2>🏆 Why BRAIN is Different</h2>
                 <div class="table-container">
                     <table>
-                        <thead><tr><th>Solution</th><th>Memory Type</th><th>Spontaneous Recall</th><th>Cross-Session Memory</th></tr></thead>
+                        <thead>
+                            <tr><th>Solution</th><th>Memory Type</th><th>Spontaneous Recall</th><th>Cross-Session Memory</th></tr>
+                        </thead>
                         <tbody>
                             <tr><td>Fine-tuning</td><td>Model weights</td><td>❌ No</td><td>❌ No</td></tr>
                             <tr><td>RAG</td><td>External DB</td><td>❌ No</td><td>❌ No</td></tr>
@@ -488,7 +528,9 @@
                 <h2>📊 The Math</h2>
                 <div class="table-container">
                     <table>
-                        <thead><tr><th>Metric</th><th>Without BRAIN</th><th>With BRAIN</th><th>Savings</th></tr></thead>
+                        <thead>
+                            <tr><th>Metric</th><th>Without BRAIN</th><th>With BRAIN</th><th>Savings</th></tr>
+                        </thead>
                         <tbody>
                             <tr><td>Avg tokens/conversation</td><td>1,000</td><td>700</td><td class="highlight">30%</td></tr>
                             <tr><td>Daily token volume (10M users)</td><td>10B</td><td>7B</td><td class="highlight">3B</td></tr>
@@ -534,7 +576,9 @@
                 <h2>🌍 Total Addressable Market</h2>
                 <div class="table-container">
                     <table>
-                        <thead><tr><th>Segment</th><th>Size</th><th>BRAIN Opportunity</th></tr></thead>
+                        <thead>
+                            <tr><th>Segment</th><th>Size</th><th>BRAIN Opportunity</th></tr>
+                        </thead>
                         <tbody>
                             <tr><td>LLM Providers (API)</td><td>500+</td><td>$500M-$1B</td></tr>
                             <tr><td>Enterprise LLM users</td><td>10,000+</td><td>$2B-$5B</td></tr>

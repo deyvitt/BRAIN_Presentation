@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BRAIN - 大语言模型持久记忆层 | 投资者演示</title>
     <style>
+        /* Your existing styles remain unchanged */
         * {
             margin: 0;
             padding: 0;
@@ -275,6 +276,28 @@
         .lang-switch a:hover {
             color: #a855f7;
         }
+
+        /* Video styles - ADD THIS NEW SECTION */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            background: #000;
+            border-radius: 12px;
+            margin: 20px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
     </style>
 </head>
 <body>
@@ -296,10 +319,23 @@
                 <h1>BRAIN</h1>
                 <div class="subtitle">大语言模型持久记忆层</div>
                 <p style="font-size: 1.2rem; color: #c4b5fd; margin-top: 2rem;">投资者演示文稿</p>
-                <p style="margin-top: 3rem; font-size: 0.9rem; color: rgba(255,255,255,0.5);">机密文件</p>
+                
+                <!-- DEMO VIDEO SECTION -->
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/i9UOOXRKqdY" 
+                            title="BRAIN 演示视频 - Qwen2.5 vs Qwen2.5 + BRAIN"
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                    </iframe>
+                </div>
+                <p style="font-size: 0.9rem; color: #c4b5fd; margin-top: 10px;">观看实机演示：标准 Qwen2.5 vs Qwen2.5 + BRAIN</p>
+                
+                <p style="margin-top: 2rem; font-size: 0.9rem; color: rgba(255,255,255,0.5);">机密文件</p>
             </div>
         </section>
 
+        <!-- Rest of your slides (2-13) remain unchanged -->
         <!-- SLIDE 2: The Problem -->
         <section class="slide">
             <div class="slide-content">
@@ -449,7 +485,9 @@
                 </div>
                 <div class="table-container">
                     <table>
-                        <thead><tr><th>特性</th><th>标准 RAG / 向量数据库</th><th>BRAIN</th></tr></thead>
+                        <thead>
+                            <tr><th>特性</th><th>标准 RAG / 向量数据库</th><th>BRAIN</th></tr>
+                        </thead>
                         <tbody>
                             <tr><td>检索依据</td><td>静态余弦相似度</td><td>相似度 × 赫布强度（自适应）</td></tr>
                             <tr><td>误报率</td><td>高 – 任何相似历史事实都可能侵入</td><td>低 – 需要经过强化的关联</td></tr>
