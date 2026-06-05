@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BRAIN - Persistent Memory Layer for LLMs | Investor Presentation</title>
     <style>
-        /* Your existing styles remain unchanged */
+        /* Base styles - preserved and enhanced */
         * {
             margin: 0;
             padding: 0;
@@ -277,7 +277,7 @@
             animation: fadeInUp 0.6s ease-out;
         }
 
-        /* Video styles - ADD THIS NEW SECTION */
+        /* Video styles */
         .video-container {
             position: relative;
             padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
@@ -298,6 +298,15 @@
             height: 100%;
             border: none;
         }
+
+        .feature-list {
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+        .feature-list li {
+            margin: 10px 0;
+            color: #e2e8f0;
+        }
     </style>
 </head>
 <body>
@@ -306,22 +315,28 @@
 </div>
 
     <div class="progress-bar" id="progressBar"></div>
-    <div class="slide-counter" id="slideCounter">Slide 1 / 13</div>
+    <div class="slide-counter" id="slideCounter">Slide 1 / 14</div>
     <div class="nav-controls">
         <button class="nav-btn" id="prevBtn">←</button>
         <button class="nav-btn" id="nextBtn">→</button>
     </div>
 
     <div class="slides-container" id="slidesContainer">
-        <!-- SLIDE 1: Title -->
+        <!-- SLIDE 1: Title (video removed) -->
         <section class="slide">
             <div class="slide-content" style="text-align: center;">
                 <div style="font-size: 4rem; margin-bottom: 1rem;">🧠</div>
                 <h1>BRAIN</h1>
                 <div class="subtitle">Persistent Memory Layer for LLMs</div>
                 <p style="font-size: 1.2rem; color: #c4b5fd; margin-top: 2rem;">Investor Presentation</p>
-                
-                <!-- DEMO VIDEO SECTION -->
+                <p style="margin-top: 2rem; font-size: 0.9rem; color: rgba(255,255,255,0.5);">Confidential</p>
+            </div>
+        </section>
+
+        <!-- SLIDE 2: What is BRAIN? (video + explanation) -->
+        <section class="slide">
+            <div class="slide-content">
+                <h2>🤔 What is BRAIN?</h2>
                 <div class="video-container">
                     <iframe src="https://www.youtube.com/embed/i9UOOXRKqdY" 
                             title="BRAIN Demo Video - Qwen2.5 vs Qwen2.5 with BRAIN"
@@ -330,14 +345,30 @@
                             allowfullscreen>
                     </iframe>
                 </div>
-                <p style="font-size: 0.9rem; color: #c4b5fd; margin-top: 10px;">Watch the live demo: Standard Qwen2.5 vs Qwen2.5 + BRAIN</p>
-                
-                <p style="margin-top: 2rem; font-size: 0.9rem; color: rgba(255,255,255,0.5);">Confidential</p>
+                <p style="font-size: 0.95rem; color: #c4b5fd; margin-bottom: 20px;">Watch the live demo: Standard Qwen2.5 vs Qwen2.5 + BRAIN — Persistent memory in action</p>
+                <div class="card-grid" style="margin-top: 10px;">
+                    <div class="card">
+                        <div class="card-icon">⚡</div>
+                        <div class="card-title">Persistent Memory Across Sessions</div>
+                        <p>BRAIN adds a <strong>neural memory layer</strong> on top of any LLM. It remembers user preferences, facts, and context for days or weeks — without bloating the context window.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🧬</div>
+                        <div class="card-title">Inspired by Neuroscience</div>
+                        <p>Uses <strong>Viral Neural Impressions (VNIs)</strong> and Hebbian learning to encode long-term memories directly into the model's activation space.</p>
+                    </div>
+                </div>
+                <div class="flow-diagram" style="margin-top: 10px;">
+                    <div class="flow-step">🧠 BRAIN Layer</div>
+                    <span class="arrow">↔</span>
+                    <div class="flow-step">Transformer Layers</div>
+                    <span class="arrow">↔</span>
+                    <div class="flow-step">Persistent Memory VNIs</div>
+                </div>
             </div>
         </section>
 
-        <!-- Rest of your slides (2-13) remain unchanged -->
-        <!-- SLIDE 2: The Problem -->
+        <!-- SLIDE 3: The Problem (old slide 2) -->
         <section class="slide">
             <div class="slide-content">
                 <h2>⚠️ The LLM Memory Crisis</h2>
@@ -368,7 +399,7 @@
             </div>
         </section>
 
-        <!-- SLIDE 3: The Hidden Cost -->
+        <!-- SLIDE 4: The Hidden Cost (old 3) -->
         <section class="slide">
             <div class="slide-content">
                 <h2>💰 The Hidden Cost of Forgetting</h2>
@@ -395,7 +426,7 @@
             </div>
         </section>
 
-        <!-- SLIDE 4: How BRAIN Works -->
+        <!-- SLIDE 5: How BRAIN Works (old 4) -->
         <section class="slide">
             <div class="slide-content">
                 <h2>🧠 How BRAIN Works</h2>
@@ -433,7 +464,7 @@
             </div>
         </section>
 
-        <!-- SLIDE 5: Value Proposition -->
+        <!-- SLIDE 6: What BRAIN Delivers (old 5) -->
         <section class="slide">
             <div class="slide-content">
                 <h2>✨ What BRAIN Delivers</h2>
@@ -462,7 +493,7 @@
             </div>
         </section>
 
-        <!-- NEW SLIDE 6: BRAIN Avoids False Recall -->
+        <!-- SLIDE 7: BRAIN Avoids False Recall (old 6) -->
         <section class="slide">
             <div class="slide-content">
                 <h2>🧠 BRAIN Avoids False Recall</h2>
@@ -501,7 +532,7 @@
             </div>
         </section>
 
-        <!-- SLIDE 7: Competitive Positioning -->
+        <!-- SLIDE 8: Competitive Positioning (old 7) -->
         <section class="slide">
             <div class="slide-content">
                 <h2>🏆 Why BRAIN is Different</h2>
@@ -522,7 +553,7 @@
             </div>
         </section>
 
-        <!-- SLIDE 8: Economics -->
+        <!-- SLIDE 9: Economics (old 8) -->
         <section class="slide">
             <div class="slide-content">
                 <h2>📊 The Math</h2>
@@ -546,7 +577,7 @@
             </div>
         </section>
 
-        <!-- SLIDE 9: Business Model -->
+        <!-- SLIDE 10: Business Model (old 9) -->
         <section class="slide">
             <div class="slide-content">
                 <h2>💼 Business Model</h2>
@@ -570,7 +601,7 @@
             </div>
         </section>
 
-        <!-- SLIDE 10: Market Opportunity -->
+        <!-- SLIDE 11: Market Opportunity (old 10) -->
         <section class="slide">
             <div class="slide-content">
                 <h2>🌍 Total Addressable Market</h2>
@@ -591,7 +622,7 @@
             </div>
         </section>
 
-        <!-- SLIDE 11: Current Status -->
+        <!-- SLIDE 12: Current Status (old 11) -->
         <section class="slide">
             <div class="slide-content">
                 <h2>📌 Current Status</h2>
@@ -610,7 +641,7 @@
             </div>
         </section>
 
-        <!-- SLIDE 12: The Ask -->
+        <!-- SLIDE 13: The Ask (old 12) -->
         <section class="slide">
             <div class="slide-content">
                 <h2>🎯 The Ask</h2>
@@ -630,7 +661,7 @@
             </div>
         </section>
 
-        <!-- SLIDE 13: Closing -->
+        <!-- SLIDE 14: Closing (old 13) -->
         <section class="slide">
             <div class="slide-content" style="text-align: center;">
                 <div style="font-size: 4rem; margin-bottom: 1rem;">🧠</div>
@@ -681,7 +712,6 @@
             }
         }
 
-        // Keyboard navigation
         document.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowRight') nextSlide();
             if (e.key === 'ArrowLeft') prevSlide();
@@ -690,7 +720,6 @@
         prevBtn.addEventListener('click', prevSlide);
         nextBtn.addEventListener('click', nextSlide);
 
-        // Initialize
         updateSlides();
     </script>
 </body>

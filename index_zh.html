@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BRAIN - 大语言模型持久记忆层 | 投资者演示</title>
     <style>
-        /* Your existing styles remain unchanged */
         * {
             margin: 0;
             padding: 0;
@@ -277,10 +276,9 @@
             color: #a855f7;
         }
 
-        /* Video styles - ADD THIS NEW SECTION */
         .video-container {
             position: relative;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            padding-bottom: 56.25%;
             height: 0;
             overflow: hidden;
             max-width: 100%;
@@ -305,22 +303,28 @@
         🌐 <a href="index.html">English</a> | <strong>中文</strong>
     </div>
     <div class="progress-bar" id="progressBar"></div>
-    <div class="slide-counter" id="slideCounter">第 1 / 13 页</div>
+    <div class="slide-counter" id="slideCounter">第 1 / 14 页</div>
     <div class="nav-controls">
         <button class="nav-btn" id="prevBtn">←</button>
         <button class="nav-btn" id="nextBtn">→</button>
     </div>
 
     <div class="slides-container" id="slidesContainer">
-        <!-- SLIDE 1: Title -->
+        <!-- SLIDE 1: 标题页（无视频） -->
         <section class="slide">
             <div class="slide-content" style="text-align: center;">
                 <div style="font-size: 4rem; margin-bottom: 1rem;">🧠</div>
                 <h1>BRAIN</h1>
                 <div class="subtitle">大语言模型持久记忆层</div>
                 <p style="font-size: 1.2rem; color: #c4b5fd; margin-top: 2rem;">投资者演示文稿</p>
-                
-                <!-- DEMO VIDEO SECTION -->
+                <p style="margin-top: 2rem; font-size: 0.9rem; color: rgba(255,255,255,0.5);">机密文件</p>
+            </div>
+        </section>
+
+        <!-- SLIDE 2: 什么是 BRAIN？（新增，含视频） -->
+        <section class="slide">
+            <div class="slide-content">
+                <h2>🤔 什么是 BRAIN？</h2>
                 <div class="video-container">
                     <iframe src="https://www.youtube.com/embed/i9UOOXRKqdY" 
                             title="BRAIN 演示视频 - Qwen2.5 vs Qwen2.5 + BRAIN"
@@ -329,14 +333,30 @@
                             allowfullscreen>
                     </iframe>
                 </div>
-                <p style="font-size: 0.9rem; color: #c4b5fd; margin-top: 10px;">观看实机演示：标准 Qwen2.5 vs Qwen2.5 + BRAIN</p>
-                
-                <p style="margin-top: 2rem; font-size: 0.9rem; color: rgba(255,255,255,0.5);">机密文件</p>
+                <p style="font-size: 0.95rem; color: #c4b5fd; margin-bottom: 20px;">观看实机演示：标准 Qwen2.5 vs Qwen2.5 + BRAIN — 持久记忆的实际效果</p>
+                <div class="card-grid" style="margin-top: 10px;">
+                    <div class="card">
+                        <div class="card-icon">⚡</div>
+                        <div class="card-title">跨会话持久记忆</div>
+                        <p>BRAIN 在任何大语言模型之上增加了一个<strong>神经记忆层</strong>。它能记住用户偏好、事实和上下文长达数天或数周，且不增加上下文窗口负担。</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🧬</div>
+                        <div class="card-title">受神经科学启发</div>
+                        <p>利用<strong>病毒性神经印记（VNI）</strong>和赫布学习，将长期记忆直接编码到模型的激活空间中。</p>
+                    </div>
+                </div>
+                <div class="flow-diagram" style="margin-top: 10px;">
+                    <div class="flow-step">🧠 BRAIN 层</div>
+                    <span class="arrow">↔</span>
+                    <div class="flow-step">Transformer 层</div>
+                    <span class="arrow">↔</span>
+                    <div class="flow-step">持久记忆 VNI</div>
+                </div>
             </div>
         </section>
 
-        <!-- Rest of your slides (2-13) remain unchanged -->
-        <!-- SLIDE 2: The Problem -->
+        <!-- SLIDE 3: 记忆危机（原第2页） -->
         <section class="slide">
             <div class="slide-content">
                 <h2>⚠️ 大语言模型的记忆危机</h2>
@@ -367,7 +387,7 @@
             </div>
         </section>
 
-        <!-- SLIDE 3: The Hidden Cost -->
+        <!-- SLIDE 4: 遗忘的隐藏成本（原第3页） -->
         <section class="slide">
             <div class="slide-content">
                 <h2>💰 遗忘的隐藏成本</h2>
@@ -394,7 +414,7 @@
             </div>
         </section>
 
-        <!-- SLIDE 4: How BRAIN Works -->
+        <!-- SLIDE 5: BRAIN 工作原理（原第4页） -->
         <section class="slide">
             <div class="slide-content">
                 <h2>🧠 BRAIN 工作原理</h2>
@@ -432,7 +452,7 @@
             </div>
         </section>
 
-        <!-- SLIDE 5: Value Proposition -->
+        <!-- SLIDE 6: BRAIN 提供的价值（原第5页） -->
         <section class="slide">
             <div class="slide-content">
                 <h2>✨ BRAIN 提供的价值</h2>
@@ -461,7 +481,7 @@
             </div>
         </section>
 
-        <!-- NEW SLIDE 6: BRAIN Avoids False Recall (Chinese) -->
+        <!-- SLIDE 7: BRAIN 避免错误回忆（原第6页） -->
         <section class="slide">
             <div class="slide-content">
                 <h2>🧠 BRAIN 避免错误回忆</h2>
@@ -500,7 +520,7 @@
             </div>
         </section>
 
-        <!-- SLIDE 7: Competitive Positioning -->
+        <!-- SLIDE 8: BRAIN 的独特优势（原第7页） -->
         <section class="slide">
             <div class="slide-content">
                 <h2>🏆 BRAIN 的独特优势</h2>
@@ -521,7 +541,7 @@
             </div>
         </section>
 
-        <!-- SLIDE 8: Economics -->
+        <!-- SLIDE 9: 经济效益（原第8页） -->
         <section class="slide">
             <div class="slide-content">
                 <h2>📊 经济效益</h2>
@@ -545,7 +565,7 @@
             </div>
         </section>
 
-        <!-- SLIDE 9: Business Model -->
+        <!-- SLIDE 10: 商业模式（原第9页） -->
         <section class="slide">
             <div class="slide-content">
                 <h2>💼 商业模式</h2>
@@ -569,7 +589,7 @@
             </div>
         </section>
 
-        <!-- SLIDE 10: Market Opportunity -->
+        <!-- SLIDE 11: 市场机会（原第10页） -->
         <section class="slide">
             <div class="slide-content">
                 <h2>🌍 市场机会</h2>
@@ -590,7 +610,7 @@
             </div>
         </section>
 
-        <!-- SLIDE 11: Current Status -->
+        <!-- SLIDE 12: 当前状态（原第11页） -->
         <section class="slide">
             <div class="slide-content">
                 <h2>📌 当前状态</h2>
@@ -609,7 +629,7 @@
             </div>
         </section>
 
-        <!-- SLIDE 12: The Ask -->
+        <!-- SLIDE 13: 融资需求（原第12页） -->
         <section class="slide">
             <div class="slide-content">
                 <h2>🎯 融资需求</h2>
@@ -629,7 +649,7 @@
             </div>
         </section>
 
-        <!-- SLIDE 13: Closing -->
+        <!-- SLIDE 14: 结语（原第13页） -->
         <section class="slide">
             <div class="slide-content" style="text-align: center;">
                 <div style="font-size: 4rem; margin-bottom: 1rem;">🧠</div>
