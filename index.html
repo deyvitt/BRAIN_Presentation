@@ -307,6 +307,67 @@
             margin: 10px 0;
             color: #e2e8f0;
         }
+
+        /* New styles for DiT diagram */
+        .dit-architecture {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .pipeline-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .pipeline-block {
+            background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(0,0,0,0.2));
+            backdrop-filter: blur(8px);
+            border-radius: 24px;
+            padding: 16px 24px;
+            text-align: center;
+            min-width: 140px;
+            border: 1px solid rgba(168,85,247,0.4);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+        .pipeline-block strong {
+            color: #c4b5fd;
+            display: block;
+            font-size: 1rem;
+        }
+        .pipeline-arrow {
+            font-size: 2rem;
+            color: #a855f7;
+            font-weight: bold;
+        }
+        .memory-chip {
+            background: rgba(168,85,247,0.3);
+            border-radius: 40px;
+            padding: 10px 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+            margin: 10px;
+            border: 1px solid #a855f7;
+        }
+        .comparison-good {
+            background: rgba(34,197,94,0.15);
+            border-left: 4px solid #22c55e;
+            padding: 16px;
+            border-radius: 12px;
+            margin: 12px 0;
+        }
+        .comparison-bad {
+            background: rgba(239,68,68,0.15);
+            border-left: 4px solid #ef4444;
+            padding: 16px;
+            border-radius: 12px;
+            margin: 12px 0;
+        }
     </style>
 </head>
 <body>
@@ -315,14 +376,14 @@
 </div>
 
     <div class="progress-bar" id="progressBar"></div>
-    <div class="slide-counter" id="slideCounter">Slide 1 / 14</div>
+    <div class="slide-counter" id="slideCounter">Slide 1 / 15</div>
     <div class="nav-controls">
         <button class="nav-btn" id="prevBtn">←</button>
         <button class="nav-btn" id="nextBtn">→</button>
     </div>
 
     <div class="slides-container" id="slidesContainer">
-        <!-- SLIDE 1: Title (video removed) -->
+        <!-- SLIDE 1: Title -->
         <section class="slide">
             <div class="slide-content" style="text-align: center;">
                 <div style="font-size: 4rem; margin-bottom: 1rem;">🧠</div>
@@ -333,7 +394,7 @@
             </div>
         </section>
 
-        <!-- SLIDE 2: What is BRAIN? (video + explanation) -->
+        <!-- SLIDE 2: What is BRAIN? -->
         <section class="slide">
             <div class="slide-content">
                 <h2>🤔 What is BRAIN?</h2>
@@ -368,7 +429,7 @@
             </div>
         </section>
 
-        <!-- SLIDE 3: The Problem (old slide 2) -->
+        <!-- SLIDE 3: The Problem -->
         <section class="slide">
             <div class="slide-content">
                 <h2>⚠️ The LLM Memory Crisis</h2>
@@ -399,7 +460,7 @@
             </div>
         </section>
 
-        <!-- SLIDE 4: The Hidden Cost (old 3) -->
+        <!-- SLIDE 4: The Hidden Cost -->
         <section class="slide">
             <div class="slide-content">
                 <h2>💰 The Hidden Cost of Forgetting</h2>
@@ -426,7 +487,7 @@
             </div>
         </section>
 
-        <!-- SLIDE 5: How BRAIN Works (old 4) -->
+        <!-- SLIDE 5: How BRAIN Works -->
         <section class="slide">
             <div class="slide-content">
                 <h2>🧠 How BRAIN Works</h2>
@@ -440,242 +501,217 @@
                     <div class="flow-step">Refined Tensor</div>
                 </div>
                 <div class="card-grid">
-                    <div class="card">
-                        <div class="card-icon">🔍</div>
-                        <div class="card-title">Pattern Detection</div>
-                        <p>Spontaneous detection of "vegetarian" pattern in tensor activations</p>
-                    </div>
-                    <div class="card">
-                        <div class="card-icon">🌱</div>
-                        <div class="card-title">VNI Spawning</div>
-                        <p>VNI_vegetarian created with initial strength 0.3</p>
-                    </div>
-                    <div class="card">
-                        <div class="card-icon">💪</div>
-                        <div class="card-title">Hebbian Learning</div>
-                        <p>Good outcomes strengthen VNI to 0.9</p>
-                    </div>
-                    <div class="card">
-                        <div class="card-icon">⚡</div>
-                        <div class="card-title">Spontaneous Recall</div>
-                        <p>Next conversation: VNI activates without reminder!</p>
-                    </div>
+                    <div class="card"><div class="card-icon">🔍</div><div class="card-title">Pattern Detection</div><p>Spontaneous detection of "vegetarian" pattern in tensor activations</p></div>
+                    <div class="card"><div class="card-icon">🌱</div><div class="card-title">VNI Spawning</div><p>VNI_vegetarian created with initial strength 0.3</p></div>
+                    <div class="card"><div class="card-icon">💪</div><div class="card-title">Hebbian Learning</div><p>Good outcomes strengthen VNI to 0.9</p></div>
+                    <div class="card"><div class="card-icon">⚡</div><div class="card-title">Spontaneous Recall</div><p>Next conversation: VNI activates without reminder!</p></div>
                 </div>
             </div>
         </section>
 
-        <!-- SLIDE 6: What BRAIN Delivers (old 5) -->
+        <!-- SLIDE 6: What BRAIN Delivers -->
         <section class="slide">
             <div class="slide-content">
                 <h2>✨ What BRAIN Delivers</h2>
                 <div class="card-grid">
-                    <div class="card">
-                        <div class="card-icon">💰</div>
-                        <div class="card-title">30-40% Cost Savings</div>
-                        <p>No re-stating forgotten information. Fixed overhead regardless of conversation length.</p>
-                    </div>
-                    <div class="card">
-                        <div class="card-icon">🧠</div>
-                        <div class="card-title">Persistent Memory</div>
-                        <p>Remembers across sessions (days/weeks/months). Never drops out.</p>
-                    </div>
-                    <div class="card">
-                        <div class="card-icon">🎯</div>
-                        <div class="card-title">Spontaneous Recall</div>
-                        <p>Memory triggers automatically without prompting.</p>
-                    </div>
-                    <div class="card">
-                        <div class="card-icon">🔄</div>
-                        <div class="card-title">Model Agnostic</div>
-                        <p>Works with ANY transformer. No lock-in.</p>
-                    </div>
+                    <div class="card"><div class="card-icon">💰</div><div class="card-title">30-40% Cost Savings</div><p>No re-stating forgotten information. Fixed overhead regardless of conversation length.</p></div>
+                    <div class="card"><div class="card-icon">🧠</div><div class="card-title">Persistent Memory</div><p>Remembers across sessions (days/weeks/months). Never drops out.</p></div>
+                    <div class="card"><div class="card-icon">🎯</div><div class="card-title">Spontaneous Recall</div><p>Memory triggers automatically without prompting.</p></div>
+                    <div class="card"><div class="card-icon">🔄</div><div class="card-title">Model Agnostic</div><p>Works with ANY transformer. No lock-in.</p></div>
                 </div>
             </div>
         </section>
 
-        <!-- SLIDE 7: BRAIN Avoids False Recall (old 6) -->
+        <!-- SLIDE 7: BRAIN Avoids False Recall -->
         <section class="slide">
             <div class="slide-content">
                 <h2>🧠 BRAIN Avoids False Recall</h2>
                 <div class="card-grid">
-                    <div class="card">
-                        <div class="card-icon">❌</div>
-                        <div class="card-title">Standard LLM Memory</div>
-                        <p><strong>Semantic similarity only</strong> – retrieves any past fact with similar embedding, causing irrelevant recalls (e.g., "Hyperman" in a home renovation chat).</p>
-                        <div style="margin-top: 15px; padding: 10px; background: rgba(239,68,68,0.2); border-radius: 12px;">
-                            <span style="color: #ef4444;">⚠️ False Positive Example:</span> User discusses renovation → LLM says "What would Hyperman think?" (from a fictional story months ago).
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-icon">✅</div>
-                        <div class="card-title">BRAIN with Hebbian Learning</div>
-                        <p><strong>Semantic similarity + learned synaptic weights</strong>. Associations only strengthen when user gives positive feedback. Irrelevant links remain weak or decay.</p>
-                        <div style="margin-top: 15px; padding: 10px; background: rgba(34,197,94,0.2); border-radius: 12px;">
-                            <span style="color: #22c55e;">✅ No false recall:</span> BRAIN never links "renovation" to "Hyperman" because no feedback reinforced that path.
-                        </div>
-                    </div>
+                    <div class="card"><div class="card-icon">❌</div><div class="card-title">Standard LLM Memory</div><p><strong>Semantic similarity only</strong> – retrieves any past fact with similar embedding, causing irrelevant recalls.</p><div style="margin-top: 15px; padding: 10px; background: rgba(239,68,68,0.2); border-radius: 12px;"><span style="color: #ef4444;">⚠️ False Positive Example:</span> User discusses renovation → LLM says "What would Hyperman think?"</div></div>
+                    <div class="card"><div class="card-icon">✅</div><div class="card-title">BRAIN with Hebbian Learning</div><p><strong>Semantic similarity + learned synaptic weights</strong>. Associations only strengthen when user gives positive feedback.</p><div style="margin-top: 15px; padding: 10px; background: rgba(34,197,94,0.2); border-radius: 12px;"><span style="color: #22c55e;">✅ No false recall:</span> BRAIN never links "renovation" to "Hyperman".</div></div>
                 </div>
-                <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr><th>Feature</th><th>Standard RAG / Vector DB</th><th>BRAIN</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>Retrieval basis</td><td>Static cosine similarity</td><td>Similarity × Hebbian strength (adapts)</td></tr>
-                            <tr><td>False positive rate</td><td>High – any past similar fact can intrude</td><td>Low – requires reinforced associations</td></tr>
-                            <tr><td>User correction</td><td>None – no learning from "that's wrong"</td><td>✅ Negative feedback weakens synapses</td></tr>
-                            <tr><td>Cross-topic contamination</td><td>Common (e.g., Hyperman in renovation)</td><td>Virtually eliminated</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-                <p style="margin-top: 20px; font-size: 0.95rem; color: #c4b5fd;">📌 This is a <strong>key differentiator</strong> – frontier LLMs with persistent memory still suffer from irrelevant recalls. BRAIN solves it.</p>
             </div>
         </section>
 
-        <!-- SLIDE 8: Competitive Positioning (old 7) -->
+        <!-- SLIDE 8: Competitive Positioning -->
         <section class="slide">
             <div class="slide-content">
                 <h2>🏆 Why BRAIN is Different</h2>
                 <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr><th>Solution</th><th>Memory Type</th><th>Spontaneous Recall</th><th>Cross-Session Memory</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>Fine-tuning</td><td>Model weights</td><td>❌ No</td><td>❌ No</td></tr>
-                            <tr><td>RAG</td><td>External DB</td><td>❌ No</td><td>❌ No</td></tr>
-                            <tr><td>Vector DB</td><td>External DB</td><td>❌ No</td><td>❌ No</td></tr>
-                            <tr><td>Context Window</td><td>In-window</td><td>❌ No</td><td>❌ No</td></tr>
-                            <tr style="background: rgba(168,85,247,0.2);"><td><strong>BRAIN</strong></td><td><strong>VNI Network</strong></td><td><strong>✅ Yes</strong></td><td><strong>✅ Yes</strong></td></tr>
-                        </tbody>
-                    </table>
+                    <table><thead><tr><th>Solution</th><th>Memory Type</th><th>Spontaneous Recall</th><th>Cross-Session Memory</th></tr></thead>
+                    <tbody><tr><td>Fine-tuning</td><td>Model weights</td><td>❌ No</td><td>❌ No</td></tr>
+                    <tr><td>RAG</td><td>External DB</td><td>❌ No</td><td>❌ No</td></tr>
+                    <tr><td>Vector DB</td><td>External DB</td><td>❌ No</td><td>❌ No</td></tr>
+                    <tr><td>Context Window</td><td>In-window</td><td>❌ No</td><td>❌ No</td></tr>
+                    <tr style="background: rgba(168,85,247,0.2);"><td><strong>BRAIN</strong></td><td><strong>VNI Network</strong></td><td><strong>✅ Yes</strong></td><td><strong>✅ Yes</strong></td></tr>
+                    </tbody></table>
                 </div>
             </div>
         </section>
 
-        <!-- SLIDE 9: Economics (old 8) -->
+        <!-- ============ NEW SLIDE 9: BRAIN FOR DIT VIDEO GENERATORS ============ -->
+        <section class="slide">
+            <div class="slide-content">
+                <h2>🎬 Beyond LLMs: BRAIN for DiT Video Generators (SeeDance, Sora, etc.)</h2>
+                <p style="margin-bottom: 20px;">Diffusion Transformers (DiTs) power next-gen video synthesis — but they suffer from <strong>temporal amnesia</strong>. BRAIN provides persistent character/scene memory across frames and sessions.</p>
+                
+                <!-- Architecture Diagram -->
+                <div class="dit-architecture">
+                    <div class="pipeline-row">
+                        <div class="pipeline-block"><strong>🔹 Standard DiT</strong><br>No memory across clips</div>
+                        <span class="pipeline-arrow">→</span>
+                        <div class="pipeline-block"><strong>❌ Inconsistent characters</strong><br>Face & outfit changes</div>
+                        <span class="pipeline-arrow">→</span>
+                        <div class="pipeline-block"><strong>⏱️ Start-over each prompt</strong><br>No object permanence</div>
+                    </div>
+                    <div class="pipeline-row" style="background: rgba(168,85,247,0.15); border-radius: 40px; padding: 20px;">
+                        <div class="pipeline-block" style="background: linear-gradient(145deg, #a855f7, #7e22ce);"><strong>🧠 BRAIN Layer</strong><br>VNI Memory Network</div>
+                        <span class="pipeline-arrow">↔</span>
+                        <div class="pipeline-block"><strong>🎭 Character VNIs</strong><br>ID, clothing, traits</div>
+                        <span class="pipeline-arrow">↔</span>
+                        <div class="pipeline-block"><strong>🌍 Scene VNIs</strong><br>Lighting, layout, objects</div>
+                    </div>
+                    <div class="pipeline-row">
+                        <div class="pipeline-block"><strong>✅ Output: Long-form coherence</strong><br>Same protagonist across minutes</div>
+                        <span class="pipeline-arrow">→</span>
+                        <div class="pipeline-block"><strong>🎞️ Zero-shot style locking</strong><br>Hebbian reinforcement</div>
+                        <span class="pipeline-arrow">→</span>
+                        <div class="pipeline-block"><strong>🚀 40% less recomputation</strong><br>Memory-guided diffusion</div>
+                    </div>
+                </div>
+
+                <!-- Current limitations vs BRAIN solution -->
+                <div class="card-grid" style="margin-top: 10px;">
+                    <div class="card">
+                        <div class="card-icon">⚠️</div>
+                        <div class="card-title">Limitation 1: Temporal Inconsistency</div>
+                        <p>DiT models (SeeDance, Stable Video) generate each clip independently. Character's face, clothing, or background shift dramatically between consecutive prompts — <strong>no persistent identity</strong>.</p>
+                        <div class="comparison-bad" style="margin-top: 12px;">🧑 Example: "Hero with red cape" → next clip: blue cape, different face shape. No memory.</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">⚡</div>
+                        <div class="card-title">Limitation 2: No Object Permanence</div>
+                        <p>If an object moves off-screen and returns, DiT regenerates it from scratch — often with different appearance, breaking narrative logic.</p>
+                        <div class="comparison-bad" style="margin-top: 12px;">📦 Example: A ball rolls behind a box → reappears as a cube. DiT forgets.</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🧠</div>
+                        <div class="card-title">BRAIN for DiT: VNI Memory Tokens</div>
+                        <p>BRAIN injects <strong>Viral Neural Impressions</strong> into DiT latent space. Each character/scene gets a persistent VNI that conditions all future frames — cross-session memory.</p>
+                        <div class="comparison-good" style="margin-top: 12px;">✅ Same red cape, same face, even after 100+ frames. Object reappears identical.</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🔄</div>
+                        <div class="card-title">Hebbian Learning for Style Locking</div>
+                        <p>User feedback (“keep this lighting”) strengthens VNI weights. Negative feedback weakens irrelevant features. DiT adapts without fine-tuning.</p>
+                        <div class="comparison-good" style="margin-top: 12px;">🎨 One-click style locking: cinematic noir → VNI cements mood across scenes.</div>
+                    </div>
+                </div>
+
+                <!-- Technical insight table -->
+                <div class="table-container">
+                    <table>
+                        <thead><tr><th>DiT Challenge</th><th>Standard Approach</th><th>BRAIN-Enhanced DiT</th></tr></thead>
+                        <tbody>
+                            <tr><td>Character consistency</td><td>Costly fine-tuning or LoRA per character</td><td class="highlight">VNI-based ID lock — realtime, no retraining</td></tr>
+                            <tr><td>Cross-clip memory</td><td>None — each generation is stateless</td><td class="highlight">Persistent VNIs survive across sessions (days)</td></tr>
+                            <tr><td>Motion coherence</td><td>Relies on temporal attention window (limited)</td><td class="highlight">Spontaneous recall of past object positions & trajectories</td></tr>
+                            <tr><td>User-guided style</td><td>Prompt engineering or model finetune</td><td class="highlight">Hebbian feedback loop — intuitive positive/negative reinforcement</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="flow-diagram" style="margin-top: 5px;">
+                    <div class="flow-step">🎬 Input video prompt</div>
+                    <span class="arrow">→</span>
+                    <div class="flow-step">🧠 BRAIN retrieves relevant VNIs</div>
+                    <span class="arrow">→</span>
+                    <div class="flow-step">⚙️ DiT latent diffusion with memory</div>
+                    <span class="arrow">→</span>
+                    <div class="flow-step">🎞️ Coherent frames + updated VNIs</div>
+                </div>
+                <p style="margin-top: 16px; font-size: 0.9rem; color: #c4b5fd;">📌 <strong>Why it matters:</strong> Video generation market to reach $5B+ by 2030. BRAIN gives DiT models <strong>memory superpowers</strong> — enabling long-form storytelling, consistent characters, and interactive editing without exploding compute costs.</p>
+            </div>
+        </section>
+        <!-- ============ END NEW SLIDE ============ -->
+
+        <!-- SLIDE 10: Economics (old 9) -->
         <section class="slide">
             <div class="slide-content">
                 <h2>📊 The Math</h2>
                 <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr><th>Metric</th><th>Without BRAIN</th><th>With BRAIN</th><th>Savings</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>Avg tokens/conversation</td><td>1,000</td><td>700</td><td class="highlight">30%</td></tr>
-                            <tr><td>Daily token volume (10M users)</td><td>10B</td><td>7B</td><td class="highlight">3B</td></tr>
-                            <tr><td>Daily cost (GPT-4 equivalent)</td><td>$300,000</td><td>$210,000</td><td class="highlight">$90,000</td></tr>
-                            <tr><td><strong>Annual cost</strong></td><td><strong>$109.5M</strong></td><td><strong>$76.6M</strong></td><td class="highlight"><strong>$32.8M</strong></td></tr>
-                        </tbody>
-                    </table>
+                    <table><thead><tr><th>Metric</th><th>Without BRAIN</th><th>With BRAIN</th><th>Savings</th></tr></thead>
+                    <tbody><tr><td>Avg tokens/conversation</td><td>1,000</td><td>700</td><td class="highlight">30%</td></tr>
+                    <tr><td>Daily token volume (10M users)</td><td>10B</td><td>7B</td><td class="highlight">3B</td></tr>
+                    <tr><td>Daily cost (GPT-4 equivalent)</td><td>$300,000</td><td>$210,000</td><td class="highlight">$90,000</td></tr>
+                    <tr><td><strong>Annual cost</strong></td><td><strong>$109.5M</strong></td><td><strong>$76.6M</strong></td><td class="highlight"><strong>$32.8M</strong></td></tr>
+                    </tbody></table>
                 </div>
-                <div class="card" style="margin-top: 20px; text-align: center;">
-                    <div class="stat-number" style="font-size: 1.8rem;">BRAIN pays for itself in <span class="highlight">cost savings alone</span></div>
-                    <div style="margin-top: 10px;">Before we even talk about better responses</div>
-                </div>
+                <div class="card" style="margin-top: 20px; text-align: center;"><div class="stat-number" style="font-size: 1.8rem;">BRAIN pays for itself in <span class="highlight">cost savings alone</span></div></div>
             </div>
         </section>
 
-        <!-- SLIDE 10: Business Model (old 9) -->
+        <!-- SLIDE 11: Business Model -->
         <section class="slide">
             <div class="slide-content">
                 <h2>💼 Business Model</h2>
                 <div class="card-grid">
-                    <div class="card">
-                        <div class="card-icon">☁️</div>
-                        <div class="card-title">Tier 1: Remote API</div>
-                        <p>Pay-as-you-go<br> $0.50-$2.00 per 1M requests<br> Free tier: 10K/month</p>
-                    </div>
-                    <div class="card">
-                        <div class="card-icon">🏢</div>
-                        <div class="card-title">Tier 2: Enterprise SDK</div>
-                        <p>Self-hosted • Compiled binaries<br> $50K-$500K/year<br> Source code escrow</p>
-                    </div>
-                    <div class="card">
-                        <div class="card-icon">🤝</div>
-                        <div class="card-title">Tier 3: Strategic</div>
-                        <p>Revenue share<br> Equity arrangements<br> Custom integration</p>
-                    </div>
+                    <div class="card"><div class="card-icon">☁️</div><div class="card-title">Tier 1: Remote API</div><p>Pay-as-you-go<br> $0.50-$2.00 per 1M requests<br> Free tier: 10K/month</p></div>
+                    <div class="card"><div class="card-icon">🏢</div><div class="card-title">Tier 2: Enterprise SDK</div><p>Self-hosted • Compiled binaries<br> $50K-$500K/year<br> Source code escrow</p></div>
+                    <div class="card"><div class="card-icon">🤝</div><div class="card-title">Tier 3: Strategic</div><p>Revenue share<br> Equity arrangements<br> Custom integration</p></div>
                 </div>
             </div>
         </section>
 
-        <!-- SLIDE 11: Market Opportunity (old 10) -->
+        <!-- SLIDE 12: Market Opportunity -->
         <section class="slide">
             <div class="slide-content">
                 <h2>🌍 Total Addressable Market</h2>
                 <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr><th>Segment</th><th>Size</th><th>BRAIN Opportunity</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>LLM Providers (API)</td><td>500+</td><td>$500M-$1B</td></tr>
-                            <tr><td>Enterprise LLM users</td><td>10,000+</td><td>$2B-$5B</td></tr>
-                            <tr><td>Robotics companies</td><td>1,000+</td><td>$500M</td></tr>
-                            <tr><td>Autonomous vehicles</td><td>100+</td><td>$500M</td></tr>
-                            <tr><td><strong>TOTAL TAM</strong></td><td></td><td class="highlight"><strong>$5B-$10B</strong></td></tr>
-                        </tbody>
-                    </table>
+                    <table><thead><tr><th>Segment</th><th>Size</th><th>BRAIN Opportunity</th></tr></thead>
+                    <tbody><tr><td>LLM Providers (API)</td><td>500+</td><td>$500M-$1B</td></tr>
+                    <tr><td>Enterprise LLM users</td><td>10,000+</td><td>$2B-$5B</td></tr>
+                    <tr><td>Robotics companies</td><td>1,000+</td><td>$500M</td></tr>
+                    <tr><td>Autonomous vehicles</td><td>100+</td><td>$500M</td></tr>
+                    <tr><td><strong>DiT Video Gen (new)</strong></td><td>200+ studios</td><td class="highlight">$1B+</td></tr>
+                    <tr><td><strong>TOTAL TAM</strong></td><td></td><td class="highlight"><strong>$6B-$11B</strong></td></tr>
+                    </tbody></table>
                 </div>
             </div>
         </section>
 
-        <!-- SLIDE 12: Current Status (old 11) -->
+        <!-- SLIDE 13: Current Status -->
         <section class="slide">
             <div class="slide-content">
                 <h2>📌 Current Status</h2>
                 <div class="card-grid">
-                    <div class="card">
-                        <div class="card-icon">✅</div>
-                        <div class="card-title">What We Have</div>
-                        <p>• Complete BRAIN engine (20K+ lines)<br>• Working prototype<br>• 94-98% tensor preservation<br>• Hardware agnostic<br>• API server with batching</p>
-                    </div>
-                    <div class="card">
-                        <div class="card-icon">🔲</div>
-                        <div class="card-title">What We Need Funding For</div>
-                        <p>• Validate with 5 open source LLMs<br>• Benchmark latency & savings<br>• Build team (3 engineers)<br>• Deploy infrastructure<br>• Secure first 10 customers</p>
-                    </div>
+                    <div class="card"><div class="card-icon">✅</div><div class="card-title">What We Have</div><p>• Complete BRAIN engine (20K+ lines)<br>• Working prototype<br>• 94-98% tensor preservation<br>• Hardware agnostic<br>• API server with batching</p></div>
+                    <div class="card"><div class="card-icon">🔲</div><div class="card-title">What We Need Funding For</div><p>• Validate with 5 open source LLMs<br>• Benchmark latency & savings<br>• Build team (3 engineers)<br>• Deploy infrastructure<br>• Secure first 10 customers</p></div>
                 </div>
             </div>
         </section>
 
-        <!-- SLIDE 13: The Ask (old 12) -->
+        <!-- SLIDE 14: The Ask -->
         <section class="slide">
             <div class="slide-content">
                 <h2>🎯 The Ask</h2>
-                <div style="text-align: center; margin: 40px 0;">
-                    <div style="font-size: 4rem; font-weight: 800; color: #a855f7;">$500,000</div>
-                    <div style="font-size: 1.2rem; margin-top: 10px;">for 30% equity</div>
-                </div>
+                <div style="text-align: center; margin: 40px 0;"><div style="font-size: 4rem; font-weight: 800; color: #a855f7;">$500,000</div><div style="font-size: 1.2rem; margin-top: 10px;">for 30% equity</div></div>
                 <div class="stat-grid">
                     <div class="stat-card"><div class="stat-number">40%</div><div class="stat-label">Engineering (3 hires)</div></div>
                     <div class="stat-card"><div class="stat-number">20%</div><div class="stat-label">Cloud Infrastructure</div></div>
                     <div class="stat-card"><div class="stat-number">20%</div><div class="stat-label">Sales & Marketing</div></div>
                     <div class="stat-card"><div class="stat-number">20%</div><div class="stat-label">Legal (Patents)</div></div>
                 </div>
-                <div class="card" style="text-align: center; margin-top: 20px;">
-                    <p><strong>Runway:</strong> 12-18 months | <strong>Target:</strong> $1M+ ARR within 12 months</p>
-                </div>
+                <div class="card" style="text-align: center; margin-top: 20px;"><p><strong>Runway:</strong> 12-18 months | <strong>Target:</strong> $1M+ ARR within 12 months</p></div>
             </div>
         </section>
 
-        <!-- SLIDE 14: Closing (old 13) -->
+        <!-- SLIDE 15: Closing -->
         <section class="slide">
             <div class="slide-content" style="text-align: center;">
                 <div style="font-size: 4rem; margin-bottom: 1rem;">🧠</div>
-                <h2>Join Us in Building Memory for LLMs</h2>
-                <div style="margin-top: 3rem;">
-                    <p style="font-size: 1.2rem;">Every LLM has the same problem: it forgets.</p>
-                    <p style="font-size: 1.2rem; margin-top: 0.5rem;">BRAIN fixes that.</p>
-                    <p style="font-size: 1.2rem; margin-top: 0.5rem; color: #a855f7;">30-40% cost savings. Persistent memory.</p>
-                    <p style="font-size: 1.2rem; margin-top: 0.5rem;">That's a $10B opportunity.</p>
-                </div>
-                <div style="margin-top: 4rem;">
-                    <p>[David KH Chan 陈光兴]</p>
-                    <p style="color: #c4b5fd;">[email: dey.vitt@gmail.com] | [Phone: +60 12 391 2910]</p>
-                </div>
+                <h2>Join Us in Building Memory for LLMs & Generative Video</h2>
+                <div style="margin-top: 3rem;"><p style="font-size: 1.2rem;">Every LLM has the same problem: it forgets.</p><p style="font-size: 1.2rem; margin-top: 0.5rem;">Every DiT video model suffers from inconsistency.</p><p style="font-size: 1.2rem; margin-top: 0.5rem; color: #a855f7;">BRAIN fixes both.</p><p style="font-size: 1.2rem; margin-top: 0.5rem;">That's a $10B+ opportunity.</p></div>
+                <div style="margin-top: 4rem;"><p>[David KH Chan 陈光兴]</p><p style="color: #c4b5fd;">[email: dey.vitt@gmail.com] | [Phone: +60 12 391 2910]</p></div>
             </div>
         </section>
     </div>
@@ -698,28 +734,12 @@
             slideCounter.textContent = `Slide ${currentSlide + 1} / ${totalSlides}`;
         }
 
-        function nextSlide() {
-            if (currentSlide < totalSlides - 1) {
-                currentSlide++;
-                updateSlides();
-            }
-        }
+        function nextSlide() { if (currentSlide < totalSlides - 1) { currentSlide++; updateSlides(); } }
+        function prevSlide() { if (currentSlide > 0) { currentSlide--; updateSlides(); } }
 
-        function prevSlide() {
-            if (currentSlide > 0) {
-                currentSlide--;
-                updateSlides();
-            }
-        }
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowRight') nextSlide();
-            if (e.key === 'ArrowLeft') prevSlide();
-        });
-
+        document.addEventListener('keydown', (e) => { if (e.key === 'ArrowRight') nextSlide(); if (e.key === 'ArrowLeft') prevSlide(); });
         prevBtn.addEventListener('click', prevSlide);
         nextBtn.addEventListener('click', nextSlide);
-
         updateSlides();
     </script>
 </body>
