@@ -438,6 +438,29 @@
         .lang-switch a:hover {
             color: #c084fc;
         }
+
+        /* Comparison highlight */
+        .comparison-table th {
+            background: rgba(168, 85, 247, 0.25);
+        }
+        .comparison-table td:first-child {
+            font-weight: 600;
+            color: #c084fc;
+        }
+        .brain-highlight {
+            background: rgba(168, 85, 247, 0.15);
+        }
+        .code-block {
+            background: #0d0d0f;
+            padding: 16px;
+            border-radius: 12px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            margin: 15px 0;
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            overflow-x: auto;
+            color: #e2e8f0;
+        }
     </style>
 </head>
 <body>
@@ -445,7 +468,7 @@
         🌐 <strong>English</strong> | <a href="index_zh.html">中文</a>
     </div>
     <div class="progress-bar" id="progressBar"></div>
-    <div class="slide-counter" id="slideCounter">Slide 1 / 15</div>
+    <div class="slide-counter" id="slideCounter">Slide 1 / 16</div>
     <div class="nav-controls">
         <button class="nav-btn" id="prevBtn">←</button>
         <button class="nav-btn" id="nextBtn">→</button>
@@ -602,26 +625,98 @@
             </div>
         </section>
 
-        <!-- SLIDE 8: Competitive Positioning -->
+        <!-- SLIDE 8: RAG + Vector DB vs BRAIN (NEW) -->
         <section class="slide">
             <div class="slide-content">
-                <h2>🏆 Why BRAIN is Different</h2>
-                <div class="table-container">
-                    <table><thead><tr><th>Solution</th><th>Memory Type</th><th>Spontaneous Recall</th><th>Cross-Session Memory</th></tr></thead>
-                    <tbody><tr><td>Fine-tuning</td><td>Model weights</td><td>❌ No</td><td>❌ No</td></tr>
-                    <tr><td>RAG</td><td>External DB</td><td>❌ No</td><td>❌ No</td></tr>
-                    <tr><td>Vector DB</td><td>External DB</td><td>❌ No</td><td>❌ No</td></tr>
-                    <tr><td>Context Window</td><td>In-window</td><td>❌ No</td><td>❌ No</td></tr>
-                    <tr style="background: rgba(168,85,247,0.2);"><td><strong>BRAIN</strong></td><td><strong>VNI Network</strong></td><td><strong>✅ Yes</strong></td><td><strong>✅ Yes</strong></td></tr>
-                    </tbody></table>
+                <h2>📊 RAG + Vector DB vs BRAIN</h2>
+                <div class="table-container comparison-table">
+                    <table>
+                        <thead>
+                            <tr><th>Aspect</th><th>RAG + Vector DB</th><th>BRAIN</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Storage</td><td>External vector database (Pinecone, Weaviate, Chroma)</td><td class="brain-highlight">In-memory VNI tree + synapses</td></tr>
+                            <tr><td>Retrieval</td><td>Cosine similarity on frozen embeddings</td><td class="brain-highlight">Spreading activation through learned synapses</td></tr>
+                            <tr><td>Learning</td><td>Static chunks, no weight changes</td><td class="brain-highlight">Hebbian plasticity, weights change with outcomes</td></tr>
+                            <tr><td>Recall mechanism</td><td>Similarity search only</td><td class="brain-highlight">Multiple signals: strength + confidence + surprise + plasticity</td></tr>
+                            <tr><td>Memory update</td><td>Re-embed and re-index (expensive)</td><td class="brain-highlight">Synaptic update (local, cheap)</td></tr>
+                            <tr><td>Forgetting</td><td>Manual deletion or TTL</td><td class="brain-highlight">Emergent pruning based on relevance</td></tr>
+                            <tr><td>Cross-session</td><td>Yes (external DB)</td><td class="brain-highlight">Yes (bridge export/import)</td></tr>
+                            <tr><td>Reinforcement</td><td>None (static)</td><td class="brain-highlight">Yes (positive/negative outcomes strengthen/weaken)</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 style="margin-top: 30px;">🧠 The Key Differences</h3>
+                <div class="code-block">
+                    <strong>1. RAG is Static; BRAIN is Plastic</strong><br>
+                    RAG: User says "My name is David" → store in vector DB → never changes<br>
+                    BRAIN: User says "My name is David" → strengthens synapses → recalled faster next time
+                </div>
+                <div class="code-block">
+                    <strong>2. RAG is Similarity; BRAIN is Association</strong><br>
+                    RAG: "What's my name?" → finds "David" by cosine similarity<br>
+                    BRAIN: "What's my name?" → activates nodes → spreads through synapses → finds "David" via learned associations
+                </div>
+                <div class="code-block">
+                    <strong>3. RAG Has No Reinforcement; BRAIN Learns from Outcomes</strong><br>
+                    RAG: Correct or incorrect → no change to retrieval<br>
+                    BRAIN: Correct response → Hebbian update → stronger recall next time
+                </div>
+                <div class="code-block">
+                    <strong>4. RAG Has No Surprise; BRAIN Has Prediction Error</strong><br>
+                    RAG: Always returns top-k similar chunks<br>
+                    BRAIN: Compares expected vs actual → surprise signal → attention
+                </div>
+
+                <div class="table-container" style="margin-top: 20px;">
+                    <table>
+                        <thead><tr><th>Feature</th><th>RAG</th><th>BRAIN</th></tr></thead>
+                        <tbody>
+                            <tr><td>Improves with use</td><td>❌ No</td><td class="highlight">✅ Yes (Hebbian)</td></tr>
+                            <tr><td>Learns what matters</td><td>❌ No (requires retraining)</td><td class="highlight">✅ Yes (outcome-based)</td></tr>
+                            <tr><td>Emergent forgetting</td><td>❌ Manual deletion</td><td class="highlight">✅ Automatic pruning</td></tr>
+                            <tr><td>Biologically plausible</td><td>❌ No</td><td class="highlight">✅ Yes</td></tr>
+                            <tr><td>Explainable recall</td><td>❌ Black box</td><td class="highlight">✅ Confidence scores</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="card" style="margin-top: 20px; text-align: center;">
+                    <div class="card-title">📋 Bottom Line</div>
+                    <p><strong>RAG</strong> is a database lookup with similarity search.</p>
+                    <p><strong>BRAIN</strong> is a learning system that:</p>
+                    <p>✅ Gets better with each interaction</p>
+                    <p>✅ Learns what information is important</p>
+                    <p>✅ Forgets what's not useful</p>
+                    <p>✅ Adapts to user behavior</p>
                 </div>
             </div>
         </section>
 
-        <!-- SLIDE 9: BRAIN for DiT Video Generators -->
+        <!-- SLIDE 9: Competitive Positioning -->
         <section class="slide">
             <div class="slide-content">
-                <h2>🎬 Beyond LLMs: BRAIN for DiT Video Generators (SeeDance, Sora, etc.)</h2>
+                <h2>🏆 Why BRAIN is Different</h2>
+                <div class="table-container">
+                    <table>
+                        <thead><tr><th>Solution</th><th>Memory Type</th><th>Spontaneous Recall</th><th>Cross-Session Memory</th></tr></thead>
+                        <tbody>
+                            <tr><td>Fine-tuning</td><td>Model weights</td><td>❌ No</td><td>❌ No</td></tr>
+                            <tr><td>RAG</td><td>External DB</td><td>❌ No</td><td>❌ No</td></tr>
+                            <tr><td>Vector DB</td><td>External DB</td><td>❌ No</td><td>❌ No</td></tr>
+                            <tr><td>Context Window</td><td>In-window</td><td>❌ No</td><td>❌ No</td></tr>
+                            <tr style="background: rgba(168,85,247,0.2);"><td><strong>BRAIN</strong></td><td><strong>VNI Network</strong></td><td><strong>✅ Yes</strong></td><td><strong>✅ Yes</strong></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 10: BRAIN for DiT Video Generators -->
+        <section class="slide">
+            <div class="slide-content">
+                <h2>🎬 Beyond LLMs: BRAIN for DiT Video Generators</h2>
                 <p style="margin-bottom: 20px;">Diffusion Transformers (DiTs) power next-gen video synthesis — but they suffer from <strong>temporal amnesia</strong>. BRAIN provides persistent character/scene memory across frames and sessions.</p>
                 
                 <div class="dit-architecture">
@@ -648,75 +743,41 @@
                     </div>
                 </div>
 
-                <div class="card-grid" style="margin-top: 10px;">
-                    <div class="card">
-                        <div class="card-icon">⚠️</div>
-                        <div class="card-title">Limitation 1: Temporal Inconsistency</div>
-                        <p>DiT models (SeeDance, Stable Video) generate each clip independently. Character's face, clothing, or background shift dramatically between consecutive prompts — <strong>no persistent identity</strong>.</p>
-                        <div class="comparison-bad" style="margin-top: 12px;">🧑 Example: "Hero with red cape" → next clip: blue cape, different face shape. No memory.</div>
-                    </div>
-                    <div class="card">
-                        <div class="card-icon">⚡</div>
-                        <div class="card-title">Limitation 2: No Object Permanence</div>
-                        <p>If an object moves off-screen and returns, DiT regenerates it from scratch — often with different appearance, breaking narrative logic.</p>
-                        <div class="comparison-bad" style="margin-top: 12px;">📦 Example: A ball rolls behind a box → reappears as a cube. DiT forgets.</div>
-                    </div>
-                    <div class="card">
-                        <div class="card-icon">🧠</div>
-                        <div class="card-title">BRAIN for DiT: VNI Memory Tokens</div>
-                        <p>BRAIN injects <strong>Viral Neural Impressions</strong> into DiT latent space. Each character/scene gets a persistent VNI that conditions all future frames — cross-session memory.</p>
-                        <div class="comparison-good" style="margin-top: 12px;">✅ Same red cape, same face, even after 100+ frames. Object reappears identical.</div>
-                    </div>
-                    <div class="card">
-                        <div class="card-icon">🔄</div>
-                        <div class="card-title">Hebbian Learning for Style Locking</div>
-                        <p>User feedback (“keep this lighting”) strengthens VNI weights. Negative feedback weakens irrelevant features. DiT adapts without fine-tuning.</p>
-                        <div class="comparison-good" style="margin-top: 12px;">🎨 One-click style locking: cinematic noir → VNI cements mood across scenes.</div>
-                    </div>
-                </div>
-
                 <div class="table-container">
                     <table>
                         <thead><tr><th>DiT Challenge</th><th>Standard Approach</th><th>BRAIN-Enhanced DiT</th></tr></thead>
                         <tbody>
                             <tr><td>Character consistency</td><td>Costly fine-tuning or LoRA per character</td><td class="highlight">VNI-based ID lock — realtime, no retraining</td></tr>
                             <tr><td>Cross-clip memory</td><td>None — each generation is stateless</td><td class="highlight">Persistent VNIs survive across sessions (days)</td></tr>
-                            <tr><td>Motion coherence</td><td>Relies on temporal attention window (limited)</td><td class="highlight">Spontaneous recall of past object positions & trajectories</td></tr>
+                            <tr><td>Motion coherence</td><td>Relies on temporal attention window (limited)</td><td class="highlight">Spontaneous recall of past object positions & trajectories</td> </tr>
                             <tr><td>User-guided style</td><td>Prompt engineering or model finetune</td><td class="highlight">Hebbian feedback loop — intuitive positive/negative reinforcement</td></tr>
                         </tbody>
                     </table>
                 </div>
-                <div class="flow-diagram" style="margin-top: 5px;">
-                    <div class="flow-step">🎬 Input video prompt</div>
-                    <span class="arrow">→</span>
-                    <div class="flow-step">🧠 BRAIN retrieves relevant VNIs</div>
-                    <span class="arrow">→</span>
-                    <div class="flow-step">⚙️ DiT latent diffusion with memory</div>
-                    <span class="arrow">→</span>
-                    <div class="flow-step">🎞️ Coherent frames + updated VNIs</div>
-                </div>
-                <p style="margin-top: 16px; font-size: 0.9rem; color: #c4b5fd;">📌 <strong>Why it matters:</strong> Video generation market to reach $5B+ by 2030. BRAIN gives DiT models <strong>memory superpowers</strong> — enabling long-form storytelling, consistent characters, and interactive editing without exploding compute costs.</p>
+                <p style="margin-top: 16px; font-size: 0.9rem; color: #c4b5fd;">📌 Video generation market to reach $5B+ by 2030. BRAIN gives DiT models <strong>memory superpowers</strong>.</p>
             </div>
         </section>
 
-        <!-- SLIDE 10: Economics -->
+        <!-- SLIDE 11: Economics -->
         <section class="slide">
             <div class="slide-content">
                 <h2>📊 The Math</h2>
                 <div class="table-container">
-                    <table><thead><tr><th>Metric</th><th>Without BRAIN</th><th>With BRAIN</th><th>Savings</th></tr></thead>
-                    <tbody>
-                        <tr><td>Avg tokens/conversation</td><td>1,000</td><td>700</td><td class="highlight">30%</td></tr>
-                        <tr><td>Daily token volume (10M users)</td><td>10B</td><td>7B</td><td class="highlight">3B</td></tr>
-                        <tr><td>Daily cost (GPT-4 equivalent)</td><td>$300,000</td><td>$210,000</td><td class="highlight">$90,000</td></tr>
-                        <tr><td><strong>Annual cost</strong></td><td><strong>$109.5M</strong></td><td><strong>$76.6M</strong></td><td class="highlight"><strong>$32.8M</strong></td></tr>
-                    </tbody></table>
+                    <table>
+                        <thead><tr><th>Metric</th><th>Without BRAIN</th><th>With BRAIN</th><th>Savings</th></tr></thead>
+                        <tbody>
+                            <tr><td>Avg tokens/conversation</td><td>1,000</td><td>700</td><td class="highlight">30%</td></tr>
+                            <tr><td>Daily token volume (10M users)</td><td>10B</td><td>7B</td><td class="highlight">3B</td></tr>
+                            <tr><td>Daily cost (GPT-4 equivalent)</td><td>$300,000</td><td>$210,000</td><td class="highlight">$90,000</td></tr>
+                            <tr><td><strong>Annual cost</strong></td><td><strong>$109.5M</strong></td><td><strong>$76.6M</strong></td><td class="highlight"><strong>$32.8M</strong></td></tr>
+                        </tbody>
+                    </table>
                 </div>
                 <div class="card" style="margin-top: 20px; text-align: center;"><div class="stat-number" style="font-size: 1.8rem;">BRAIN pays for itself in <span class="highlight">cost savings alone</span></div></div>
             </div>
         </section>
 
-        <!-- SLIDE 11: Business Model -->
+        <!-- SLIDE 12: Business Model -->
         <section class="slide">
             <div class="slide-content">
                 <h2>💼 Business Model</h2>
@@ -728,26 +789,27 @@
             </div>
         </section>
 
-        <!-- SLIDE 12: Market Opportunity -->
+        <!-- SLIDE 13: Market Opportunity -->
         <section class="slide">
             <div class="slide-content">
                 <h2>🌍 Total Addressable Market</h2>
                 <div class="table-container">
-                    <table><thead><tr><th>Segment</th><th>Size</th><th>BRAIN Opportunity</th></tr></thead>
-                    <tbody>
-                        <tr><td>LLM Providers (API)</td><td>500+</td><td>$500M-$1B</td></tr>
-                        <tr><td>Enterprise LLM users</td><td>10,000+</td><td>$2B-$5B</td></tr>
-                        <tr><td>Robotics companies</td><td>1,000+</td><td>$500M</td></tr>
-                        <tr><td>Autonomous vehicles</td><td>100+</td><td>$500M</td></tr>
-                        <tr><td><strong>DiT Video Gen (new)</strong></td><td>200+ studios</td><td class="highlight">$1B+</td></tr>
-                        <tr><td><strong>TOTAL TAM</strong></td><td></td><td class="highlight"><strong>$6B-$11B</strong></td></tr>
-                    </tbody>
-                </table>
+                    <table>
+                        <thead><tr><th>Segment</th><th>Size</th><th>BRAIN Opportunity</th></tr></thead>
+                        <tbody>
+                            <tr><td>LLM Providers (API)</td><td>500+</td><td>$500M-$1B</td></tr>
+                            <tr><td>Enterprise LLM users</td><td>10,000+</td><td>$2B-$5B</td></tr>
+                            <tr><td>Robotics companies</td><td>1,000+</td><td>$500M</td></tr>
+                            <tr><td>Autonomous vehicles</td><td>100+</td><td>$500M</td></tr>
+                            <tr><td><strong>DiT Video Gen</strong></td><td>200+ studios</td><td class="highlight">$1B+</td></tr>
+                            <tr><td><strong>TOTAL TAM</strong></td><td></td><td class="highlight"><strong>$6B-$11B</strong></td></tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </section>
 
-        <!-- SLIDE 13: Current Status -->
+        <!-- SLIDE 14: Current Status -->
         <section class="slide">
             <div class="slide-content">
                 <h2>📌 Current Status</h2>
@@ -758,7 +820,7 @@
             </div>
         </section>
 
-        <!-- SLIDE 14: The Ask -->
+        <!-- SLIDE 15: The Ask -->
         <section class="slide">
             <div class="slide-content">
                 <h2>🎯 The Ask</h2>
@@ -773,7 +835,7 @@
             </div>
         </section>
 
-        <!-- SLIDE 15: Closing -->
+        <!-- SLIDE 16: Closing -->
         <section class="slide">
             <div class="slide-content" style="text-align: center;">
                 <div style="font-size: 4rem; margin-bottom: 1rem;">🧠</div>
@@ -811,4 +873,4 @@
         updateSlides();
     </script>
 </body>
-</html> 
+</html>

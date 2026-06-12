@@ -324,7 +324,7 @@
         /* Video Container */
         .video-container {
             position: relative;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            padding-bottom: 56.25%;
             height: 0;
             overflow: hidden;
             max-width: 100%;
@@ -342,16 +342,6 @@
             width: 100%;
             height: 100%;
             border: none;
-        }
-
-        /* Feature Lists */
-        .feature-list {
-            margin: 20px 0;
-            padding-left: 20px;
-        }
-        .feature-list li {
-            margin: 10px 0;
-            color: #e2e8f0;
         }
 
         /* DiT Architecture Styles */
@@ -388,18 +378,6 @@
             font-size: 2rem;
             color: #c084fc;
             font-weight: bold;
-        }
-        .memory-chip {
-            background: rgba(168, 85, 247, 0.2);
-            border-radius: 40px;
-            padding: 10px 20px;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: bold;
-            margin: 10px;
-            border: 1px solid #a855f7;
-            color: #ffffff;
         }
         .comparison-good {
             background: rgba(34, 197, 94, 0.1);
@@ -438,6 +416,29 @@
         .lang-switch a:hover {
             color: #c084fc;
         }
+
+        /* Comparison styles */
+        .comparison-table th {
+            background: rgba(168, 85, 247, 0.25);
+        }
+        .comparison-table td:first-child {
+            font-weight: 600;
+            color: #c084fc;
+        }
+        .brain-highlight {
+            background: rgba(168, 85, 247, 0.15);
+        }
+        .code-block {
+            background: #0d0d0f;
+            padding: 16px;
+            border-radius: 12px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            margin: 15px 0;
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            overflow-x: auto;
+            color: #e2e8f0;
+        }
     </style>
 </head>
 <body>
@@ -445,7 +446,7 @@
         🌐 <a href="index.html">English</a> | <strong>中文</strong>
     </div>
     <div class="progress-bar" id="progressBar"></div>
-    <div class="slide-counter" id="slideCounter">第 1 / 15 页</div>
+    <div class="slide-counter" id="slideCounter">第 1 / 16 页</div>
     <div class="nav-controls">
         <button class="nav-btn" id="prevBtn">←</button>
         <button class="nav-btn" id="nextBtn">→</button>
@@ -613,28 +614,98 @@
             </div>
         </section>
 
-        <!-- SLIDE 8: BRAIN 的独特优势 -->
+        <!-- SLIDE 8: RAG + 向量数据库 vs BRAIN（新增） -->
         <section class="slide">
             <div class="slide-content">
-                <h2>🏆 BRAIN 的独特优势</h2>
-                <div class="table-container">
-                    <table><thead><tr><th>解决方案</th><th>记忆类型</th><th>自发回忆</th><th>跨会话记忆</th></tr></thead>
-                    <tbody>
-                        <tr><td>微调</td><td>模型权重</td><td>❌ 否</td><td>❌ 否</td></tr>
-                        <tr><td>RAG</td><td>外部数据库</td><td>❌ 否</td><td>❌ 否</td></tr>
-                        <tr><td>向量数据库</td><td>外部数据库</td><td>❌ 否</td><td>❌ 否</td></tr>
-                        <tr><td>上下文窗口</td><td>窗口内</td><td>❌ 否</td><td>❌ 否</td></tr>
-                        <tr style="background: rgba(168,85,247,0.2);"><td><strong>BRAIN</strong></td><td><strong>VNI 网络</strong></td><td><strong>✅ 是</strong></td><td><strong>✅ 是</strong></td></tr>
-                    </tbody>
-                </table>
+                <h2>📊 RAG + 向量数据库 vs BRAIN</h2>
+                <div class="table-container comparison-table">
+                    <table>
+                        <thead>
+                            <tr><th>特性</th><th>RAG + 向量数据库</th><th>BRAIN</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>存储</td><td>外部向量数据库（Pinecone, Weaviate, Chroma）</td><td class="brain-highlight">内存中的 VNI 树 + 突触</td></tr>
+                            <tr><td>检索</td><td>冻结嵌入的余弦相似度</td><td class="brain-highlight">通过已学习突触的扩散激活</td></tr>
+                            <tr><td>学习</td><td>静态块，无权重变化</td><td class="brain-highlight">赫布可塑性，权重随结果变化</td></tr>
+                            <tr><td>回忆机制</td><td>仅相似度搜索</td><td class="brain-highlight">多重信号：强度 + 置信度 + 惊喜 + 可塑性</td></tr>
+                            <tr><td>记忆更新</td><td>重新嵌入并重新索引（昂贵）</td><td class="brain-highlight">突触更新（本地，廉价）</td></tr>
+                            <tr><td>遗忘</td><td>手动删除或 TTL</td><td class="brain-highlight">基于相关性的涌现式修剪</td></tr>
+                            <tr><td>跨会话</td><td>是（外部数据库）</td><td class="brain-highlight">是（桥接导出/导入）</td></tr>
+                            <tr><td>强化</td><td>无（静态）</td><td class="brain-highlight">是（正/负结果加强/削弱）</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 style="margin-top: 30px;">🧠 关键差异</h3>
+                <div class="code-block">
+                    <strong>1. RAG 是静态的；BRAIN 是可塑的</strong><br>
+                    RAG：用户说“我叫 David”→ 存储到向量数据库 → 永不改变<br>
+                    BRAIN：用户说“我叫 David”→ 加强突触 → 下次回忆更快
+                </div>
+                <div class="code-block">
+                    <strong>2. RAG 基于相似度；BRAIN 基于关联</strong><br>
+                    RAG：“我叫什么名字？”→ 通过余弦相似度找到“David”<br>
+                    BRAIN：“我叫什么名字？”→ 激活节点 → 通过突触扩散 → 通过已学习的关联找到“David”
+                </div>
+                <div class="code-block">
+                    <strong>3. RAG 没有强化；BRAIN 从结果中学习</strong><br>
+                    RAG：正确或错误 → 检索无变化<br>
+                    BRAIN：正确响应 → 赫布更新 → 下次回忆更强
+                </div>
+                <div class="code-block">
+                    <strong>4. RAG 没有惊喜；BRAIN 有预测误差</strong><br>
+                    RAG：总是返回 top-k 相似块<br>
+                    BRAIN：比较预期与实际 → 惊喜信号 → 注意力
+                </div>
+
+                <div class="table-container" style="margin-top: 20px;">
+                    <table>
+                        <thead><tr><th>特性</th><th>RAG</th><th>BRAIN</th></tr></thead>
+                        <tbody>
+                            <tr><td>随着使用而改进</td><td>❌ 否</td><td class="highlight">✅ 是（赫布）</td></tr>
+                            <tr><td>学习什么重要</td><td>❌ 否（需要重新训练）</td><td class="highlight">✅ 是（基于结果）</td></tr>
+                            <tr><td>涌现式遗忘</td><td>❌ 手动删除</td><td class="highlight">✅ 自动修剪</td></tr>
+                            <tr><td>生物学合理性</td><td>❌ 否</td><td class="highlight">✅ 是</td></tr>
+                            <tr><td>可解释的回忆</td><td>❌ 黑箱</td><td class="highlight">✅ 置信度分数</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="card" style="margin-top: 20px; text-align: center;">
+                    <div class="card-title">📋 结论</div>
+                    <p><strong>RAG</strong> 是基于相似度搜索的数据库查找。</p>
+                    <p><strong>BRAIN</strong> 是一个学习系统：</p>
+                    <p>✅ 每次交互都会变得更好</p>
+                    <p>✅ 学习哪些信息重要</p>
+                    <p>✅ 忘记无用的信息</p>
+                    <p>✅ 适应用户行为</p>
                 </div>
             </div>
         </section>
 
-        <!-- SLIDE 9: BRAIN 赋能 DiT 视频生成器 -->
+        <!-- SLIDE 9: BRAIN 的独特优势 -->
         <section class="slide">
             <div class="slide-content">
-                <h2>🎬 超越大语言模型：BRAIN 赋能 DiT 视频生成器（SeeDance、Sora 等）</h2>
+                <h2>🏆 BRAIN 的独特优势</h2>
+                <div class="table-container">
+                    <table>
+                        <thead><tr><th>解决方案</th><th>记忆类型</th><th>自发回忆</th><th>跨会话记忆</th></tr></thead>
+                        <tbody>
+                            <tr><td>微调</td><td>模型权重</td><td>❌ 否</td><td>❌ 否</td></tr>
+                            <tr><td>RAG</td><td>外部数据库</td><td>❌ 否</td><td>❌ 否</td></tr>
+                            <tr><td>向量数据库</td><td>外部数据库</td><td>❌ 否</td><td>❌ 否</td></tr>
+                            <tr><td>上下文窗口</td><td>窗口内</td><td>❌ 否</td><td>❌ 否</td></tr>
+                            <tr style="background: rgba(168,85,247,0.2);"><td><strong>BRAIN</strong></td><td><strong>VNI 网络</strong></td><td><strong>✅ 是</strong></td><td><strong>✅ 是</strong></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 10: BRAIN 赋能 DiT 视频生成器 -->
+        <section class="slide">
+            <div class="slide-content">
+                <h2>🎬 超越大语言模型：BRAIN 赋能 DiT 视频生成器</h2>
                 <p style="margin-bottom: 20px;">扩散 Transformer（DiT）驱动着下一代视频合成技术 —— 但它们都患有<strong>时间性失忆症</strong>。BRAIN 提供跨帧、跨会话的持久角色/场景记忆。</p>
                 
                 <div class="dit-architecture">
@@ -661,68 +732,32 @@
                     </div>
                 </div>
 
-                <div class="card-grid" style="margin-top: 10px;">
-                    <div class="card">
-                        <div class="card-icon">⚠️</div>
-                        <div class="card-title">限制一：时间不一致性</div>
-                        <p>DiT 模型（SeeDance、Stable Video）独立生成每个片段。角色面部、服装或背景在连续提示之间剧烈变化 — <strong>没有持久身份记忆</strong>。</p>
-                        <div class="comparison-bad" style="margin-top: 12px;">🧑 示例："披红披风的英雄" → 下一个片段：蓝披风、不同脸型。无记忆。</div>
-                    </div>
-                    <div class="card">
-                        <div class="card-icon">⚡</div>
-                        <div class="card-title">限制二：无物体恒常性</div>
-                        <p>如果物体移出画面再回来，DiT 会从头重新生成 — 通常外观发生变化，破坏叙事逻辑。</p>
-                        <div class="comparison-bad" style="margin-top: 12px;">📦 示例：球滚到箱子后面 → 重新出现时变成了方块。DiT 忘记了。</div>
-                    </div>
-                    <div class="card">
-                        <div class="card-icon">🧠</div>
-                        <div class="card-title">BRAIN for DiT：VNI 记忆令牌</div>
-                        <p>BRAIN 将<strong>病毒性神经印记（VNI）</strong>注入 DiT 隐空间。每个角色/场景获得持久 VNI，约束所有后续帧 — 跨会话记忆。</p>
-                        <div class="comparison-good" style="margin-top: 12px;">✅ 相同的红披风、相同的脸，即使经过 100+ 帧。物体重新出现时完全一致。</div>
-                    </div>
-                    <div class="card">
-                        <div class="card-icon">🔄</div>
-                        <div class="card-title">赫布学习风格锁定</div>
-                        <p>用户反馈（"保持这种光照"）强化 VNI 权重。负面反馈削弱无关特征。DiT 无需微调即可自适应。</p>
-                        <div class="comparison-good" style="margin-top: 12px;">🎨 一键风格锁定：黑色电影风格 → VNI 将氛围固化到所有场景中。</div>
-                    </div>
-                </div>
-
                 <div class="table-container">
                     <table>
                         <thead><tr><th>DiT 挑战</th><th>标准方案</th><th>BRAIN 增强型 DiT</th></tr></thead>
                         <tbody>
-                            <tr><td>角色一致性</td><td>昂贵的微调或每个角色的 LoRA</td><td class="highlight">基于 VNI 的身份锁定 — 实时，无需重新训练</td></tr>
-                            <tr><td>跨片段记忆</td><td>无 — 每次生成都是无状态的</td><td class="highlight">持久 VNI 跨会话存活（数天）</td></tr>
-                            <tr><td>运动连贯性</td><td>依赖有限的时间注意力窗口</td><td class="highlight">自发回忆过去物体位置和轨迹</td></tr>
-                            <tr><td>用户引导风格</td><td>提示工程或模型微调</td><td class="highlight">赫布反馈回路 — 直观的正/负强化</td></tr>
+                            <tr><td>角色一致性</th><td>昂贵的微调或每个角色的 LoRA</td><td class="highlight">基于 VNI 的身份锁定 — 实时，无需重新训练</td> </tr>
+                            <tr><td>跨片段记忆</td><td>无 — 每次生成都是无状态的</td><td class="highlight">持久 VNI 跨会话存活（数天）</td> </tr>
+                            <tr><td>运动连贯性</td><td>依赖有限的时间注意力窗口</td><td class="highlight">自发回忆过去物体位置和轨迹</td> </tr>
+                            <tr><td>用户引导风格</td><td>提示工程或模型微调</td><td class="highlight">赫布反馈回路 — 直观的正/负强化</td> </tr>
                         </tbody>
                     </table>
                 </div>
-                <div class="flow-diagram" style="margin-top: 5px;">
-                    <div class="flow-step">🎬 输入视频提示</div>
-                    <span class="arrow">→</span>
-                    <div class="flow-step">🧠 BRAIN 检索相关 VNI</div>
-                    <span class="arrow">→</span>
-                    <div class="flow-step">⚙️ DiT 带记忆的隐扩散</div>
-                    <span class="arrow">→</span>
-                    <div class="flow-step">🎞️ 连贯帧 + 更新的 VNI</div>
-                </div>
-                <p style="margin-top: 16px; font-size: 0.9rem; color: #c4b5fd;">📌 <strong>为什么重要：</strong> 视频生成市场预计到 2030 年将超过 50 亿美元。BRAIN 为 DiT 模型赋予<strong>记忆超能力</strong> — 实现长篇叙事、一致的角色和交互式编辑，而不会爆炸式增加计算成本。</p>
+                <p style="margin-top: 16px; font-size: 0.9rem; color: #c4b5fd;">📌 视频生成市场预计到 2030 年将超过 50 亿美元。BRAIN 为 DiT 模型赋予<strong>记忆超能力</strong>。</p>
             </div>
         </section>
 
-        <!-- SLIDE 10: 经济效益 -->
+        <!-- SLIDE 11: 经济效益 -->
         <section class="slide">
             <div class="slide-content">
                 <h2>📊 经济效益</h2>
                 <div class="table-container">
                     <table><thead><tr><th>指标</th><th>无BRAIN</th><th>有BRAIN</th><th>节省</th></tr></thead>
                     <tbody>
-                        <tr><td>平均 tokens/对话</td><td>1,000</td><td>700</td><td class="highlight">30%</td></tr>
-                        <tr><td>日 token 量（1000万用户）</td><td>100亿</td><td>70亿</td><td class="highlight">30亿</td></tr>
-                        <tr><td>日成本（GPT-4等效）</td><td>$30万</td><td>$21万</td><td class="highlight">$9万</td></tr>
-                        <tr><td><strong>年成本</strong></td><td><strong>$1.095亿</strong></td><td><strong>$7660万</strong></td><td class="highlight"><strong>$3290万</strong></td></tr>
+                        <tr><td>平均 tokens/对话</td><td>1,000</td><td>700</td><td class="highlight">30%</td> </tr>
+                        <tr><td>日 token 量（1000万用户）</td><td>100亿</td><td>70亿</td><td class="highlight">30亿</td> </tr>
+                        <tr><td>日成本（GPT-4等效）</td><td>$30万</td><td>$21万</td><td class="highlight">$9万</td> </tr>
+                        <tr><td><strong>年成本</strong></td><td><strong>$1.095亿</strong></td><td><strong>$7660万</strong></td><td class="highlight"><strong>$3290万</strong></td> </tr>
                     </tbody>
                 </table>
                 </div>
@@ -733,7 +768,7 @@
             </div>
         </section>
 
-        <!-- SLIDE 11: 商业模式 -->
+        <!-- SLIDE 12: 商业模式 -->
         <section class="slide">
             <div class="slide-content">
                 <h2>💼 商业模式</h2>
@@ -745,26 +780,26 @@
             </div>
         </section>
 
-        <!-- SLIDE 12: 市场机会（更新含 DiT） -->
+        <!-- SLIDE 13: 市场机会 -->
         <section class="slide">
             <div class="slide-content">
                 <h2>🌍 市场机会</h2>
                 <div class="table-container">
                     <table><thead><tr><th>细分市场</th><th>规模</th><th>BRAIN 机会</th></tr></thead>
                     <tbody>
-                        <tr><td>大语言模型服务商</td><td>500+</td><td>$5亿-$10亿</td></tr>
-                        <tr><td>企业大语言模型用户</td><td>10,000+</td><td>$20亿-$50亿</td></tr>
-                        <tr><td>机器人公司</td><td>1,000+</td><td>$5亿</td></tr>
-                        <tr><td>自动驾驶</td><td>100+</td><td>$5亿</td></tr>
-                        <tr><td><strong>DiT 视频生成（新增）</strong></td><td>200+ 工作室</td><td class="highlight">$10亿+</td></tr>
-                        <tr><td><strong>总可寻址市场</strong></td><td></td><td class="highlight"><strong>$60亿-$110亿</strong></td></tr>
+                        <tr><td>大语言模型服务商</td><td>500+</td><td>$5亿-$10亿</td> </tr>
+                        <tr><td>企业大语言模型用户</td><td>10,000+</td><td>$20亿-$50亿</td> </tr>
+                        <tr><td>机器人公司</td><td>1,000+</td><td>$5亿</td> </tr>
+                        <tr><td>自动驾驶</td><td>100+</td><td>$5亿</td> </tr>
+                        <tr><td><strong>DiT 视频生成（新增）</strong></td><td>200+ 工作室</td><td class="highlight">$10亿+</td> </tr>
+                        <tr><td><strong>总可寻址市场</strong></td><td></td><td class="highlight"><strong>$60亿-$110亿</strong></td> </tr>
                     </tbody>
                 </table>
                 </div>
             </div>
         </section>
 
-        <!-- SLIDE 13: 当前状态 -->
+        <!-- SLIDE 14: 当前状态 -->
         <section class="slide">
             <div class="slide-content">
                 <h2>📌 当前状态</h2>
@@ -775,7 +810,7 @@
             </div>
         </section>
 
-        <!-- SLIDE 14: 融资需求 -->
+        <!-- SLIDE 15: 融资需求 -->
         <section class="slide">
             <div class="slide-content">
                 <h2>🎯 融资需求</h2>
@@ -795,7 +830,7 @@
             </div>
         </section>
 
-        <!-- SLIDE 15: 结语（更新版） -->
+        <!-- SLIDE 16: 结语 -->
         <section class="slide">
             <div class="slide-content" style="text-align: center;">
                 <div style="font-size: 4rem; margin-bottom: 1rem;">🧠</div>
@@ -841,4 +876,4 @@
         updateSlides();
     </script>
 </body>
-</html> 
+</html>
