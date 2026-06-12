@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BRAIN - 大语言模型持久记忆层 | 投资者演示</title>
     <style>
+        /* Reset & Base - Dark Grey with Purplish-Lavender Accents */
         * {
             margin: 0;
             padding: 0;
@@ -13,11 +14,29 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', Roboto, 'Helvetica Neue', sans-serif;
-            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
-            color: #fff;
+            background: #1a1a1e;
+            color: #ffffff;
             overflow-x: hidden;
+            position: relative;
         }
 
+        /* Animated Background Beams */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(168, 85, 247, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(139, 92, 246, 0.12) 0%, transparent 50%),
+                radial-gradient(circle at 40% 90%, rgba(192, 132, 252, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Slide Container */
         .slide {
             min-height: 100vh;
             display: flex;
@@ -25,19 +44,25 @@
             justify-content: center;
             padding: 60px 80px;
             position: relative;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(168, 85, 247, 0.2);
+            background: rgba(26, 26, 30, 0.92);
+            backdrop-filter: blur(2px);
+            z-index: 1;
         }
 
         .slide-content {
             max-width: 1200px;
             width: 100%;
             margin: 0 auto;
+            position: relative;
+            z-index: 2;
         }
 
+        /* Typography - Clear White Text */
         h1 {
             font-size: 5rem;
             font-weight: 800;
-            background: linear-gradient(135deg, #fff 0%, #a855f7 100%);
+            background: linear-gradient(135deg, #ffffff 0%, #c084fc 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -50,13 +75,14 @@
             margin-bottom: 2rem;
             border-left: 4px solid #a855f7;
             padding-left: 20px;
+            color: #ffffff;
         }
 
         h3 {
             font-size: 1.5rem;
             font-weight: 600;
             margin-bottom: 1rem;
-            color: #a855f7;
+            color: #c084fc;
         }
 
         .subtitle {
@@ -65,6 +91,12 @@
             margin-bottom: 2rem;
         }
 
+        p, li, .card p {
+            color: #e2e8f0;
+            line-height: 1.5;
+        }
+
+        /* Cards */
         .card-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -73,17 +105,19 @@
         }
 
         .card {
-            background: rgba(255,255,255,0.08);
+            background: rgba(30, 30, 35, 0.8);
             backdrop-filter: blur(10px);
             border-radius: 20px;
             padding: 28px;
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: transform 0.3s ease;
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .card:hover {
             transform: translateY(-5px);
-            background: rgba(255,255,255,0.12);
+            background: rgba(40, 40, 48, 0.9);
+            border-color: rgba(168, 85, 247, 0.6);
+            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.2);
         }
 
         .card-icon {
@@ -95,13 +129,16 @@
             font-size: 1.3rem;
             font-weight: 600;
             margin-bottom: 0.75rem;
+            color: #ffffff;
         }
 
+        /* Tables */
         .table-container {
-            background: rgba(255,255,255,0.05);
+            background: rgba(30, 30, 35, 0.7);
             border-radius: 16px;
             overflow-x: auto;
             margin: 30px 0;
+            border: 1px solid rgba(168, 85, 247, 0.2);
         }
 
         table {
@@ -112,13 +149,17 @@
         th, td {
             padding: 16px 20px;
             text-align: left;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(168, 85, 247, 0.2);
         }
 
         th {
-            background: rgba(168,85,247,0.2);
+            background: rgba(168, 85, 247, 0.15);
             font-weight: 600;
-            color: #c4b5fd;
+            color: #c084fc;
+        }
+
+        td {
+            color: #e2e8f0;
         }
 
         .highlight {
@@ -130,6 +171,7 @@
             color: #ef4444;
         }
 
+        /* Stats */
         .stat-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -140,44 +182,50 @@
         .stat-card {
             text-align: center;
             padding: 30px;
-            background: rgba(255,255,255,0.05);
+            background: rgba(30, 30, 35, 0.7);
             border-radius: 20px;
+            border: 1px solid rgba(168, 85, 247, 0.3);
         }
 
         .stat-number {
             font-size: 2.5rem;
             font-weight: 800;
-            color: #a855f7;
+            color: #c084fc;
         }
 
         .stat-label {
-            color: #c4b5fd;
+            color: #a0a0c0;
             margin-top: 8px;
         }
 
+        /* Flow Diagram */
         .flow-diagram {
-            background: rgba(0,0,0,0.3);
+            background: rgba(30, 30, 35, 0.6);
             border-radius: 20px;
             padding: 30px;
             margin: 30px 0;
             text-align: center;
+            border: 1px solid rgba(168, 85, 247, 0.3);
         }
 
         .flow-step {
             display: inline-block;
-            background: rgba(168,85,247,0.2);
+            background: rgba(168, 85, 247, 0.2);
             border-radius: 40px;
             padding: 12px 24px;
             margin: 8px;
             font-size: 0.9rem;
+            color: #ffffff;
+            border: 1px solid rgba(168, 85, 247, 0.4);
         }
 
         .arrow {
             font-size: 1.5rem;
             margin: 0 10px;
-            color: #a855f7;
+            color: #c084fc;
         }
 
+        /* Navigation */
         .nav-controls {
             position: fixed;
             bottom: 30px;
@@ -188,7 +236,7 @@
         }
 
         .nav-btn {
-            background: rgba(168,85,247,0.8);
+            background: rgba(168, 85, 247, 0.8);
             border: none;
             color: white;
             width: 48px;
@@ -209,23 +257,28 @@
             position: fixed;
             top: 0;
             left: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #a855f7, #e879f9);
+            height: 4px;
+            background: linear-gradient(90deg, #a855f7, #c084fc, #e879f9);
             transition: width 0.3s ease;
             z-index: 1000;
+            box-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
         }
 
         .slide-counter {
             position: fixed;
             bottom: 30px;
             left: 30px;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
             padding: 8px 16px;
             border-radius: 20px;
             font-size: 0.9rem;
+            color: #c4b5fd;
             z-index: 1000;
+            border: 1px solid rgba(168, 85, 247, 0.3);
         }
 
+        /* Badges */
         .badge {
             display: inline-block;
             background: #22c55e;
@@ -237,6 +290,11 @@
             margin-left: 10px;
         }
 
+        .badge-warning {
+            background: #f59e0b;
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
             .slide {
                 padding: 40px 24px;
@@ -247,6 +305,7 @@
             .card-grid { grid-template-columns: 1fr; }
         }
 
+        /* Animations */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -262,27 +321,10 @@
             animation: fadeInUp 0.6s ease-out;
         }
 
-        .lang-switch {
-            position: fixed;
-            top: 20px;
-            right: 90px;
-            background: rgba(0,0,0,0.5);
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            z-index: 1000;
-        }
-        .lang-switch a {
-            color: white;
-            text-decoration: none;
-        }
-        .lang-switch a:hover {
-            color: #a855f7;
-        }
-
+        /* Video Container */
         .video-container {
             position: relative;
-            padding-bottom: 56.25%;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
             height: 0;
             overflow: hidden;
             max-width: 100%;
@@ -290,6 +332,7 @@
             border-radius: 12px;
             margin: 20px 0;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 1px solid rgba(168, 85, 247, 0.3);
         }
 
         .video-container iframe {
@@ -301,7 +344,17 @@
             border: none;
         }
 
-        /* 新增 DiT 视频生成器样式 */
+        /* Feature Lists */
+        .feature-list {
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+        .feature-list li {
+            margin: 10px 0;
+            color: #e2e8f0;
+        }
+
+        /* DiT Architecture Styles */
         .dit-architecture {
             display: flex;
             flex-direction: column;
@@ -317,41 +370,27 @@
             margin-bottom: 20px;
         }
         .pipeline-block {
-            background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(0,0,0,0.2));
+            background: linear-gradient(145deg, rgba(40, 40, 48, 0.9), rgba(30, 30, 35, 0.8));
             backdrop-filter: blur(8px);
             border-radius: 24px;
             padding: 16px 24px;
             text-align: center;
             min-width: 140px;
-            border: 1px solid rgba(168,85,247,0.4);
+            border: 1px solid rgba(168, 85, 247, 0.5);
             box-shadow: 0 8px 20px rgba(0,0,0,0.2);
         }
         .pipeline-block strong {
-            color: #c4b5fd;
+            color: #c084fc;
             display: block;
             font-size: 1rem;
         }
         .pipeline-arrow {
             font-size: 2rem;
-            color: #a855f7;
+            color: #c084fc;
             font-weight: bold;
         }
-        .comparison-good {
-            background: rgba(34,197,94,0.15);
-            border-left: 4px solid #22c55e;
-            padding: 16px;
-            border-radius: 12px;
-            margin: 12px 0;
-        }
-        .comparison-bad {
-            background: rgba(239,68,68,0.15);
-            border-left: 4px solid #ef4444;
-            padding: 16px;
-            border-radius: 12px;
-            margin: 12px 0;
-        }
         .memory-chip {
-            background: rgba(168,85,247,0.3);
+            background: rgba(168, 85, 247, 0.2);
             border-radius: 40px;
             padding: 10px 20px;
             display: inline-flex;
@@ -360,6 +399,44 @@
             font-weight: bold;
             margin: 10px;
             border: 1px solid #a855f7;
+            color: #ffffff;
+        }
+        .comparison-good {
+            background: rgba(34, 197, 94, 0.1);
+            border-left: 4px solid #22c55e;
+            padding: 16px;
+            border-radius: 12px;
+            margin: 12px 0;
+            color: #e2e8f0;
+        }
+        .comparison-bad {
+            background: rgba(239, 68, 68, 0.1);
+            border-left: 4px solid #ef4444;
+            padding: 16px;
+            border-radius: 12px;
+            margin: 12px 0;
+            color: #e2e8f0;
+        }
+        
+        /* Language Switcher */
+        .lang-switch {
+            position: fixed;
+            top: 20px;
+            right: 90px;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(8px);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            z-index: 1000;
+            border: 1px solid rgba(168, 85, 247, 0.3);
+        }
+        .lang-switch a {
+            color: white;
+            text-decoration: none;
+        }
+        .lang-switch a:hover {
+            color: #c084fc;
         }
     </style>
 </head>
@@ -524,11 +601,13 @@
                 </div>
                 <div class="table-container">
                     <table><thead><tr><th>特性</th><th>标准 RAG / 向量数据库</th><th>BRAIN</th></tr></thead>
-                    <tbody><tr><td>检索依据</td><td>静态余弦相似度</td><td>相似度 × 赫布强度（自适应）</td></tr>
-                    <tr><td>误报率</td><td>高 – 任何相似历史事实都可能侵入</td><td>低 – 需要经过强化的关联</td></tr>
-                    <tr><td>用户纠错</td><td>无 – 无法从“这是错的”中学习</td><td>✅ 负面反馈会削弱突触</td></tr>
-                    <tr><td>跨主题污染</td><td>常见</td><td>几乎消除</td></tr>
-                    </tbody></table>
+                    <tbody>
+                        <tr><td>检索依据</td><td>静态余弦相似度</td><td>相似度 × 赫布强度（自适应）</td></tr>
+                        <tr><td>误报率</td><td>高 – 任何相似历史事实都可能侵入</td><td>低 – 需要经过强化的关联</td></tr>
+                        <tr><td>用户纠错</td><td>无 – 无法从“这是错的”中学习</td><td>✅ 负面反馈会削弱突触</td></tr>
+                        <tr><td>跨主题污染</td><td>常见</td><td>几乎消除</td></tr>
+                    </tbody>
+                </table>
                 </div>
                 <p style="margin-top: 20px; font-size: 0.95rem; color: #c4b5fd;">📌 这是 <strong>关键差异化优势</strong> – 前沿大语言模型即使拥有持久记忆，仍然存在不相关回忆。BRAIN 解决了这个问题。</p>
             </div>
@@ -540,23 +619,24 @@
                 <h2>🏆 BRAIN 的独特优势</h2>
                 <div class="table-container">
                     <table><thead><tr><th>解决方案</th><th>记忆类型</th><th>自发回忆</th><th>跨会话记忆</th></tr></thead>
-                    <tbody><tr><td>微调</td><td>模型权重</td><td>❌ 否</td><td>❌ 否</td></tr>
-                    <tr><td>RAG</td><td>外部数据库</td><td>❌ 否</td><td>❌ 否</td></tr>
-                    <tr><td>向量数据库</td><td>外部数据库</td><td>❌ 否</td><td>❌ 否</td></tr>
-                    <tr><td>上下文窗口</td><td>窗口内</td><td>❌ 否</td><td>❌ 否</td></tr>
-                    <tr style="background: rgba(168,85,247,0.2);"><td><strong>BRAIN</strong></td><td><strong>VNI 网络</strong></td><td><strong>✅ 是</strong></td><td><strong>✅ 是</strong></td></tr>
-                    </tbody></table>
+                    <tbody>
+                        <tr><td>微调</td><td>模型权重</td><td>❌ 否</td><td>❌ 否</td></tr>
+                        <tr><td>RAG</td><td>外部数据库</td><td>❌ 否</td><td>❌ 否</td></tr>
+                        <tr><td>向量数据库</td><td>外部数据库</td><td>❌ 否</td><td>❌ 否</td></tr>
+                        <tr><td>上下文窗口</td><td>窗口内</td><td>❌ 否</td><td>❌ 否</td></tr>
+                        <tr style="background: rgba(168,85,247,0.2);"><td><strong>BRAIN</strong></td><td><strong>VNI 网络</strong></td><td><strong>✅ 是</strong></td><td><strong>✅ 是</strong></td></tr>
+                    </tbody>
+                </table>
                 </div>
             </div>
         </section>
 
-        <!-- ========== 新增 SLIDE 9: BRAIN 赋能 DiT 视频生成器 ========== -->
+        <!-- SLIDE 9: BRAIN 赋能 DiT 视频生成器 -->
         <section class="slide">
             <div class="slide-content">
                 <h2>🎬 超越大语言模型：BRAIN 赋能 DiT 视频生成器（SeeDance、Sora 等）</h2>
                 <p style="margin-bottom: 20px;">扩散 Transformer（DiT）驱动着下一代视频合成技术 —— 但它们都患有<strong>时间性失忆症</strong>。BRAIN 提供跨帧、跨会话的持久角色/场景记忆。</p>
                 
-                <!-- 架构图 -->
                 <div class="dit-architecture">
                     <div class="pipeline-row">
                         <div class="pipeline-block"><strong>🔹 标准 DiT</strong><br>无跨片段记忆</div>
@@ -581,7 +661,6 @@
                     </div>
                 </div>
 
-                <!-- 当前限制 vs BRAIN 解决方案 -->
                 <div class="card-grid" style="margin-top: 10px;">
                     <div class="card">
                         <div class="card-icon">⚠️</div>
@@ -609,7 +688,6 @@
                     </div>
                 </div>
 
-                <!-- 技术对比表 -->
                 <div class="table-container">
                     <table>
                         <thead><tr><th>DiT 挑战</th><th>标准方案</th><th>BRAIN 增强型 DiT</th></tr></thead>
@@ -633,7 +711,6 @@
                 <p style="margin-top: 16px; font-size: 0.9rem; color: #c4b5fd;">📌 <strong>为什么重要：</strong> 视频生成市场预计到 2030 年将超过 50 亿美元。BRAIN 为 DiT 模型赋予<strong>记忆超能力</strong> — 实现长篇叙事、一致的角色和交互式编辑，而不会爆炸式增加计算成本。</p>
             </div>
         </section>
-        <!-- ========== 新增结束 ========== -->
 
         <!-- SLIDE 10: 经济效益 -->
         <section class="slide">
@@ -641,11 +718,13 @@
                 <h2>📊 经济效益</h2>
                 <div class="table-container">
                     <table><thead><tr><th>指标</th><th>无BRAIN</th><th>有BRAIN</th><th>节省</th></tr></thead>
-                    <tbody><tr><td>平均 tokens/对话</td><td>1,000</td><td>700</td><td class="highlight">30%</td></tr>
-                    <tr><td>日 token 量（1000万用户）</td><td>100亿</td><td>70亿</td><td class="highlight">30亿</td></tr>
-                    <tr><td>日成本（GPT-4等效）</td><td>$30万</td><td>$21万</td><td class="highlight">$9万</td></tr>
-                    <tr><td><strong>年成本</strong></td><td><strong>$1.095亿</strong></td><td><strong>$7660万</strong></td><td class="highlight"><strong>$3290万</strong></td></tr>
-                    </tbody></table>
+                    <tbody>
+                        <tr><td>平均 tokens/对话</td><td>1,000</td><td>700</td><td class="highlight">30%</td></tr>
+                        <tr><td>日 token 量（1000万用户）</td><td>100亿</td><td>70亿</td><td class="highlight">30亿</td></tr>
+                        <tr><td>日成本（GPT-4等效）</td><td>$30万</td><td>$21万</td><td class="highlight">$9万</td></tr>
+                        <tr><td><strong>年成本</strong></td><td><strong>$1.095亿</strong></td><td><strong>$7660万</strong></td><td class="highlight"><strong>$3290万</strong></td></tr>
+                    </tbody>
+                </table>
                 </div>
                 <div class="card" style="margin-top: 20px; text-align: center;">
                     <div class="stat-number" style="font-size: 1.8rem;">BRAIN 仅靠<span class="highlight">成本节省</span>就能收回投资</div>
@@ -701,7 +780,7 @@
             <div class="slide-content">
                 <h2>🎯 融资需求</h2>
                 <div style="text-align: center; margin: 40px 0;">
-                    <div style="font-size: 4rem; font-weight: 800; color: #a855f7;">$50万</div>
+                    <div style="font-size: 4rem; font-weight: 800; color: #c084fc;">$150万</div>
                     <div style="font-size: 1.2rem; margin-top: 10px;">对应 30% 股权</div>
                 </div>
                 <div class="stat-grid">
@@ -724,7 +803,7 @@
                 <div style="margin-top: 3rem;">
                     <p style="font-size: 1.2rem;">每一个大语言模型都有同样的问题：它会遗忘。</p>
                     <p style="font-size: 1.2rem; margin-top: 0.5rem;">每一个 DiT 视频模型都存在不一致性问题。</p>
-                    <p style="font-size: 1.2rem; margin-top: 0.5rem; color: #a855f7;">BRAIN 同时解决了这两个问题。</p>
+                    <p style="font-size: 1.2rem; margin-top: 0.5rem; color: #c084fc;">BRAIN 同时解决了这两个问题。</p>
                     <p style="font-size: 1.2rem; margin-top: 0.5rem;">这是一个百亿美元以上的市场机会。</p>
                 </div>
                 <div style="margin-top: 4rem;">
@@ -762,4 +841,4 @@
         updateSlides();
     </script>
 </body>
-</html>
+</html> 

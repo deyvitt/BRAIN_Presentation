@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BRAIN - Persistent Memory Layer for LLMs | Investor Presentation</title>
     <style>
-        /* Base styles - preserved and enhanced */
+        /* Reset & Base - Dark Grey with Purplish-Lavender Accents */
         * {
             margin: 0;
             padding: 0;
@@ -14,9 +14,26 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
-            color: #fff;
+            background: #1a1a1e;
+            color: #ffffff;
             overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated Background Beams */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(168, 85, 247, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(139, 92, 246, 0.12) 0%, transparent 50%),
+                radial-gradient(circle at 40% 90%, rgba(192, 132, 252, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
         }
 
         /* Slide Container */
@@ -27,20 +44,25 @@
             justify-content: center;
             padding: 60px 80px;
             position: relative;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(168, 85, 247, 0.2);
+            background: rgba(26, 26, 30, 0.92);
+            backdrop-filter: blur(2px);
+            z-index: 1;
         }
 
         .slide-content {
             max-width: 1200px;
             width: 100%;
             margin: 0 auto;
+            position: relative;
+            z-index: 2;
         }
 
-        /* Typography */
+        /* Typography - Clear White Text */
         h1 {
             font-size: 5rem;
             font-weight: 800;
-            background: linear-gradient(135deg, #fff 0%, #a855f7 100%);
+            background: linear-gradient(135deg, #ffffff 0%, #c084fc 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -53,19 +75,25 @@
             margin-bottom: 2rem;
             border-left: 4px solid #a855f7;
             padding-left: 20px;
+            color: #ffffff;
         }
 
         h3 {
             font-size: 1.5rem;
             font-weight: 600;
             margin-bottom: 1rem;
-            color: #a855f7;
+            color: #c084fc;
         }
 
         .subtitle {
             font-size: 1.5rem;
             color: #c4b5fd;
             margin-bottom: 2rem;
+        }
+
+        p, li, .card p {
+            color: #e2e8f0;
+            line-height: 1.5;
         }
 
         /* Cards */
@@ -77,17 +105,19 @@
         }
 
         .card {
-            background: rgba(255,255,255,0.08);
+            background: rgba(30, 30, 35, 0.8);
             backdrop-filter: blur(10px);
             border-radius: 20px;
             padding: 28px;
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: transform 0.3s ease;
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .card:hover {
             transform: translateY(-5px);
-            background: rgba(255,255,255,0.12);
+            background: rgba(40, 40, 48, 0.9);
+            border-color: rgba(168, 85, 247, 0.6);
+            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.2);
         }
 
         .card-icon {
@@ -99,14 +129,16 @@
             font-size: 1.3rem;
             font-weight: 600;
             margin-bottom: 0.75rem;
+            color: #ffffff;
         }
 
         /* Tables */
         .table-container {
-            background: rgba(255,255,255,0.05);
+            background: rgba(30, 30, 35, 0.7);
             border-radius: 16px;
             overflow-x: auto;
             margin: 30px 0;
+            border: 1px solid rgba(168, 85, 247, 0.2);
         }
 
         table {
@@ -117,13 +149,17 @@
         th, td {
             padding: 16px 20px;
             text-align: left;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(168, 85, 247, 0.2);
         }
 
         th {
-            background: rgba(168,85,247,0.2);
+            background: rgba(168, 85, 247, 0.15);
             font-weight: 600;
-            color: #c4b5fd;
+            color: #c084fc;
+        }
+
+        td {
+            color: #e2e8f0;
         }
 
         .highlight {
@@ -146,43 +182,47 @@
         .stat-card {
             text-align: center;
             padding: 30px;
-            background: rgba(255,255,255,0.05);
+            background: rgba(30, 30, 35, 0.7);
             border-radius: 20px;
+            border: 1px solid rgba(168, 85, 247, 0.3);
         }
 
         .stat-number {
             font-size: 2.5rem;
             font-weight: 800;
-            color: #a855f7;
+            color: #c084fc;
         }
 
         .stat-label {
-            color: #c4b5fd;
+            color: #a0a0c0;
             margin-top: 8px;
         }
 
         /* Flow Diagram */
         .flow-diagram {
-            background: rgba(0,0,0,0.3);
+            background: rgba(30, 30, 35, 0.6);
             border-radius: 20px;
             padding: 30px;
             margin: 30px 0;
             text-align: center;
+            border: 1px solid rgba(168, 85, 247, 0.3);
         }
 
         .flow-step {
             display: inline-block;
-            background: rgba(168,85,247,0.2);
+            background: rgba(168, 85, 247, 0.2);
             border-radius: 40px;
             padding: 12px 24px;
             margin: 8px;
             font-size: 0.9rem;
+            color: #ffffff;
+            border: 1px solid rgba(168, 85, 247, 0.4);
         }
 
         .arrow {
             font-size: 1.5rem;
             margin: 0 10px;
-            color: #a855f7;
+            color: #c084fc;
         }
 
         /* Navigation */
@@ -196,7 +236,7 @@
         }
 
         .nav-btn {
-            background: rgba(168,85,247,0.8);
+            background: rgba(168, 85, 247, 0.8);
             border: none;
             color: white;
             width: 48px;
@@ -217,21 +257,25 @@
             position: fixed;
             top: 0;
             left: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #a855f7, #e879f9);
+            height: 4px;
+            background: linear-gradient(90deg, #a855f7, #c084fc, #e879f9);
             transition: width 0.3s ease;
             z-index: 1000;
+            box-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
         }
 
         .slide-counter {
             position: fixed;
             bottom: 30px;
             left: 30px;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
             padding: 8px 16px;
             border-radius: 20px;
             font-size: 0.9rem;
+            color: #c4b5fd;
             z-index: 1000;
+            border: 1px solid rgba(168, 85, 247, 0.3);
         }
 
         /* Badges */
@@ -277,7 +321,7 @@
             animation: fadeInUp 0.6s ease-out;
         }
 
-        /* Video styles */
+        /* Video Container */
         .video-container {
             position: relative;
             padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
@@ -288,6 +332,7 @@
             border-radius: 12px;
             margin: 20px 0;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 1px solid rgba(168, 85, 247, 0.3);
         }
 
         .video-container iframe {
@@ -299,6 +344,7 @@
             border: none;
         }
 
+        /* Feature Lists */
         .feature-list {
             margin: 20px 0;
             padding-left: 20px;
@@ -308,7 +354,7 @@
             color: #e2e8f0;
         }
 
-        /* New styles for DiT diagram */
+        /* DiT Architecture Styles */
         .dit-architecture {
             display: flex;
             flex-direction: column;
@@ -324,27 +370,27 @@
             margin-bottom: 20px;
         }
         .pipeline-block {
-            background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(0,0,0,0.2));
+            background: linear-gradient(145deg, rgba(40, 40, 48, 0.9), rgba(30, 30, 35, 0.8));
             backdrop-filter: blur(8px);
             border-radius: 24px;
             padding: 16px 24px;
             text-align: center;
             min-width: 140px;
-            border: 1px solid rgba(168,85,247,0.4);
+            border: 1px solid rgba(168, 85, 247, 0.5);
             box-shadow: 0 8px 20px rgba(0,0,0,0.2);
         }
         .pipeline-block strong {
-            color: #c4b5fd;
+            color: #c084fc;
             display: block;
             font-size: 1rem;
         }
         .pipeline-arrow {
             font-size: 2rem;
-            color: #a855f7;
+            color: #c084fc;
             font-weight: bold;
         }
         .memory-chip {
-            background: rgba(168,85,247,0.3);
+            background: rgba(168, 85, 247, 0.2);
             border-radius: 40px;
             padding: 10px 20px;
             display: inline-flex;
@@ -353,28 +399,51 @@
             font-weight: bold;
             margin: 10px;
             border: 1px solid #a855f7;
+            color: #ffffff;
         }
         .comparison-good {
-            background: rgba(34,197,94,0.15);
+            background: rgba(34, 197, 94, 0.1);
             border-left: 4px solid #22c55e;
             padding: 16px;
             border-radius: 12px;
             margin: 12px 0;
+            color: #e2e8f0;
         }
         .comparison-bad {
-            background: rgba(239,68,68,0.15);
+            background: rgba(239, 68, 68, 0.1);
             border-left: 4px solid #ef4444;
             padding: 16px;
             border-radius: 12px;
             margin: 12px 0;
+            color: #e2e8f0;
+        }
+        
+        /* Language Switcher */
+        .lang-switch {
+            position: fixed;
+            top: 20px;
+            right: 90px;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(8px);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            z-index: 1000;
+            border: 1px solid rgba(168, 85, 247, 0.3);
+        }
+        .lang-switch a {
+            color: white;
+            text-decoration: none;
+        }
+        .lang-switch a:hover {
+            color: #c084fc;
         }
     </style>
 </head>
 <body>
-<div style="position: fixed; top: 20px; right: 90px; background: rgba(0,0,0,0.5); padding: 8px 16px; border-radius: 20px; z-index: 1000; font-size: 0.8rem;">
-    🌐 <strong>English</strong> | <a href="index_zh.html" style="color: white; text-decoration: none;">中文</a>
-</div>
-
+    <div class="lang-switch">
+        🌐 <strong>English</strong> | <a href="index_zh.html">中文</a>
+    </div>
     <div class="progress-bar" id="progressBar"></div>
     <div class="slide-counter" id="slideCounter">Slide 1 / 15</div>
     <div class="nav-controls">
@@ -549,13 +618,12 @@
             </div>
         </section>
 
-        <!-- ============ NEW SLIDE 9: BRAIN FOR DIT VIDEO GENERATORS ============ -->
+        <!-- SLIDE 9: BRAIN for DiT Video Generators -->
         <section class="slide">
             <div class="slide-content">
                 <h2>🎬 Beyond LLMs: BRAIN for DiT Video Generators (SeeDance, Sora, etc.)</h2>
                 <p style="margin-bottom: 20px;">Diffusion Transformers (DiTs) power next-gen video synthesis — but they suffer from <strong>temporal amnesia</strong>. BRAIN provides persistent character/scene memory across frames and sessions.</p>
                 
-                <!-- Architecture Diagram -->
                 <div class="dit-architecture">
                     <div class="pipeline-row">
                         <div class="pipeline-block"><strong>🔹 Standard DiT</strong><br>No memory across clips</div>
@@ -580,7 +648,6 @@
                     </div>
                 </div>
 
-                <!-- Current limitations vs BRAIN solution -->
                 <div class="card-grid" style="margin-top: 10px;">
                     <div class="card">
                         <div class="card-icon">⚠️</div>
@@ -608,7 +675,6 @@
                     </div>
                 </div>
 
-                <!-- Technical insight table -->
                 <div class="table-container">
                     <table>
                         <thead><tr><th>DiT Challenge</th><th>Standard Approach</th><th>BRAIN-Enhanced DiT</th></tr></thead>
@@ -632,18 +698,18 @@
                 <p style="margin-top: 16px; font-size: 0.9rem; color: #c4b5fd;">📌 <strong>Why it matters:</strong> Video generation market to reach $5B+ by 2030. BRAIN gives DiT models <strong>memory superpowers</strong> — enabling long-form storytelling, consistent characters, and interactive editing without exploding compute costs.</p>
             </div>
         </section>
-        <!-- ============ END NEW SLIDE ============ -->
 
-        <!-- SLIDE 10: Economics (old 9) -->
+        <!-- SLIDE 10: Economics -->
         <section class="slide">
             <div class="slide-content">
                 <h2>📊 The Math</h2>
                 <div class="table-container">
                     <table><thead><tr><th>Metric</th><th>Without BRAIN</th><th>With BRAIN</th><th>Savings</th></tr></thead>
-                    <tbody><tr><td>Avg tokens/conversation</td><td>1,000</td><td>700</td><td class="highlight">30%</td></tr>
-                    <tr><td>Daily token volume (10M users)</td><td>10B</td><td>7B</td><td class="highlight">3B</td></tr>
-                    <tr><td>Daily cost (GPT-4 equivalent)</td><td>$300,000</td><td>$210,000</td><td class="highlight">$90,000</td></tr>
-                    <tr><td><strong>Annual cost</strong></td><td><strong>$109.5M</strong></td><td><strong>$76.6M</strong></td><td class="highlight"><strong>$32.8M</strong></td></tr>
+                    <tbody>
+                        <tr><td>Avg tokens/conversation</td><td>1,000</td><td>700</td><td class="highlight">30%</td></tr>
+                        <tr><td>Daily token volume (10M users)</td><td>10B</td><td>7B</td><td class="highlight">3B</td></tr>
+                        <tr><td>Daily cost (GPT-4 equivalent)</td><td>$300,000</td><td>$210,000</td><td class="highlight">$90,000</td></tr>
+                        <tr><td><strong>Annual cost</strong></td><td><strong>$109.5M</strong></td><td><strong>$76.6M</strong></td><td class="highlight"><strong>$32.8M</strong></td></tr>
                     </tbody></table>
                 </div>
                 <div class="card" style="margin-top: 20px; text-align: center;"><div class="stat-number" style="font-size: 1.8rem;">BRAIN pays for itself in <span class="highlight">cost savings alone</span></div></div>
@@ -668,13 +734,15 @@
                 <h2>🌍 Total Addressable Market</h2>
                 <div class="table-container">
                     <table><thead><tr><th>Segment</th><th>Size</th><th>BRAIN Opportunity</th></tr></thead>
-                    <tbody><tr><td>LLM Providers (API)</td><td>500+</td><td>$500M-$1B</td></tr>
-                    <tr><td>Enterprise LLM users</td><td>10,000+</td><td>$2B-$5B</td></tr>
-                    <tr><td>Robotics companies</td><td>1,000+</td><td>$500M</td></tr>
-                    <tr><td>Autonomous vehicles</td><td>100+</td><td>$500M</td></tr>
-                    <tr><td><strong>DiT Video Gen (new)</strong></td><td>200+ studios</td><td class="highlight">$1B+</td></tr>
-                    <tr><td><strong>TOTAL TAM</strong></td><td></td><td class="highlight"><strong>$6B-$11B</strong></td></tr>
-                    </tbody></table>
+                    <tbody>
+                        <tr><td>LLM Providers (API)</td><td>500+</td><td>$500M-$1B</td></tr>
+                        <tr><td>Enterprise LLM users</td><td>10,000+</td><td>$2B-$5B</td></tr>
+                        <tr><td>Robotics companies</td><td>1,000+</td><td>$500M</td></tr>
+                        <tr><td>Autonomous vehicles</td><td>100+</td><td>$500M</td></tr>
+                        <tr><td><strong>DiT Video Gen (new)</strong></td><td>200+ studios</td><td class="highlight">$1B+</td></tr>
+                        <tr><td><strong>TOTAL TAM</strong></td><td></td><td class="highlight"><strong>$6B-$11B</strong></td></tr>
+                    </tbody>
+                </table>
                 </div>
             </div>
         </section>
@@ -694,7 +762,7 @@
         <section class="slide">
             <div class="slide-content">
                 <h2>🎯 The Ask</h2>
-                <div style="text-align: center; margin: 40px 0;"><div style="font-size: 4rem; font-weight: 800; color: #a855f7;">$500,000</div><div style="font-size: 1.2rem; margin-top: 10px;">for 30% equity</div></div>
+                <div style="text-align: center; margin: 40px 0;"><div style="font-size: 4rem; font-weight: 800; color: #c084fc;">$1,500,000</div><div style="font-size: 1.2rem; margin-top: 10px;">for 30% equity</div></div>
                 <div class="stat-grid">
                     <div class="stat-card"><div class="stat-number">40%</div><div class="stat-label">Engineering (3 hires)</div></div>
                     <div class="stat-card"><div class="stat-number">20%</div><div class="stat-label">Cloud Infrastructure</div></div>
@@ -710,7 +778,7 @@
             <div class="slide-content" style="text-align: center;">
                 <div style="font-size: 4rem; margin-bottom: 1rem;">🧠</div>
                 <h2>Join Us in Building Memory for LLMs & Generative Video</h2>
-                <div style="margin-top: 3rem;"><p style="font-size: 1.2rem;">Every LLM has the same problem: it forgets.</p><p style="font-size: 1.2rem; margin-top: 0.5rem;">Every DiT video model suffers from inconsistency.</p><p style="font-size: 1.2rem; margin-top: 0.5rem; color: #a855f7;">BRAIN fixes both.</p><p style="font-size: 1.2rem; margin-top: 0.5rem;">That's a $10B+ opportunity.</p></div>
+                <div style="margin-top: 3rem;"><p style="font-size: 1.2rem;">Every LLM has the same problem: it forgets.</p><p style="font-size: 1.2rem; margin-top: 0.5rem;">Every DiT video model suffers from inconsistency.</p><p style="font-size: 1.2rem; margin-top: 0.5rem; color: #c084fc;">BRAIN fixes both.</p><p style="font-size: 1.2rem; margin-top: 0.5rem;">That's a $10B+ opportunity.</p></div>
                 <div style="margin-top: 4rem;"><p>[David KH Chan 陈光兴]</p><p style="color: #c4b5fd;">[email: dey.vitt@gmail.com] | [Phone: +60 12 391 2910]</p></div>
             </div>
         </section>
@@ -743,4 +811,4 @@
         updateSlides();
     </script>
 </body>
-</html>
+</html> 
