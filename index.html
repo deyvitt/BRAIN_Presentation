@@ -390,7 +390,6 @@
             color: #e2e8f0;
         }
 
-        /* Chart containers for benchmark (replaces Mermaid) */
         .chart-container {
             background: rgba(20, 20, 25, 0.7);
             border-radius: 20px;
@@ -478,6 +477,57 @@
             margin-top: 8px;
         }
 
+        /* Badge styles for honesty */
+        .badge-honest {
+            background: rgba(251, 191, 36, 0.2);
+            border: 1px solid #fbbf24;
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin: 20px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .badge-honest .icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .badge-honest .content {
+            color: #fde68a;
+        }
+
+        .badge-honest .content strong {
+            color: #fbbf24;
+        }
+
+        .badge-warning {
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid #ef4444;
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin: 20px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .badge-warning .icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .badge-warning .content {
+            color: #fca5a5;
+        }
+
+        .badge-warning .content strong {
+            color: #ef4444;
+        }
+
         @media (max-width: 768px) {
             .slide {
                 padding: 40px 24px;
@@ -509,7 +559,7 @@
         🌐 <strong>English</strong> | <a href="index_zh.html">中文</a>
     </div>
     <div class="progress-bar" id="progressBar"></div>
-    <div class="slide-counter" id="slideCounter">Slide 1 / 17</div>
+    <div class="slide-counter" id="slideCounter">Slide 1 / 18</div>
     <div class="nav-controls">
         <button class="nav-btn" id="prevBtn">←</button>
         <button class="nav-btn" id="nextBtn">→</button>
@@ -643,11 +693,70 @@
             </div>
         </section>
 
-        <!-- SLIDE 7: BENCHMARK - BRAIN vs OTHER LLMs (Fixed - no Mermaid errors) -->
+        <!-- SLIDE 7: Qwen2.5-3B + BRAIN Benchmark (New) -->
         <section class="slide">
             <div class="slide-content">
-                <h2>📊 BRAIN vs OTHER LLMs BENCHMARK <span style="font-size: 1rem; background: #22c55e20; padding: 4px 12px; border-radius: 20px; margin-left: 12px;">Our Experiment Reveals</span></h2>
-                <p style="margin-bottom: 20px;">We benchmarked <strong>Qwen2.5-3B + BRAIN</strong> against leading open-weight models on <strong>cross-session memory, identity binding, and reasoning adaptation</strong>. BRAIN delivers 13B-class performance at 3B cost.</p>
+                <h2>📊 Qwen2.5-3B + BRAIN: Honest Benchmark</h2>
+                
+                <div class="badge-honest">
+                    <div class="icon">📌</div>
+                    <div class="content">
+                        <strong>Honest Assessment:</strong> BRAIN does NOT increase MMLU, MATH, HumanEval, or GSM8K scores. Those benchmarks measure raw knowledge and reasoning — they remain at 3B levels. What BRAIN adds are capabilities that static benchmarks <strong>do not measure</strong>.
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr><th>Benchmark</th><th>Qwen2.5-3B</th><th>Qwen2.5-14B</th><th>Qwen2.5-3B + BRAIN</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>MMLU</td><td>65.6%</td><td>74-80%</td><td>65.6% (unchanged)</td></tr>
+                            <tr><td>MATH</td><td>16-42%</td><td>55-80%</td><td>16-42% (unchanged)</td></tr>
+                            <tr><td>HumanEval</td><td>42-43%</td><td>56-83%</td><td>42-43% (unchanged)</td></tr>
+                            <tr><td>GSM8K</td><td>75-79%</td><td>90-95%</td><td>75-79% (unchanged)</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="badge-warning">
+                    <div class="icon">⚠️</div>
+                    <div class="content">
+                        <strong>Key Insight:</strong> BRAIN does not make a 3B model as "smart" as a 14B model. But it adds capabilities the 14B <strong>lacks entirely</strong> — persistent memory, continuous learning, personalization, and emergent behavior.
+                    </div>
+                </div>
+
+                <!-- New: What BRAIN Actually Adds -->
+                <div class="chart-container">
+                    <h3 style="text-align: center; margin-bottom: 20px;">🧠 What BRAIN Actually Adds (Not Measured by Standard Benchmarks)</h3>
+                    <div class="table-container" style="margin: 0;">
+                        <table>
+                            <thead><tr><th>Capability</th><th>Qwen2.5-3B</th><th>Qwen2.5-14B</th><th>Qwen2.5-3B + BRAIN</th></tr></thead>
+                            <tbody>
+                                <tr><td>Persistent Memory</td><td>❌</td><td>❌</td><td class="highlight">✅</td></tr>
+                                <tr><td>Cross-Session Learning</td><td>❌</td><td>❌</td><td class="highlight">✅</td></tr>
+                                <tr><td>Personalization</td><td>❌</td><td>❌</td><td class="highlight">✅</td></tr>
+                                <tr><td>Identity Emergence</td><td>❌</td><td>❌</td><td class="highlight">✅ (Emerging)</td></tr>
+                                <tr><td>Self-Modulation</td><td>❌</td><td>❌</td><td class="highlight">✅</td></tr>
+                                <tr><td>Self-Initiation</td><td>❌</td><td>❌</td><td class="highlight">✅ (Future)</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="card" style="margin-top: 20px; background: rgba(168,85,247,0.2); border-color: #a855f7;">
+                    <div class="card-title">🔬 The Honest Positioning</div>
+                    <p><strong>BRAIN+3B is NOT competing on raw intelligence.</strong> It's competing on <strong>memory, learning, and personalization</strong> — capabilities that no static LLM, regardless of size, can provide.</p>
+                    <p style="margin-top: 12px; color: #c084fc;">📌 <strong>Value Proposition:</strong> BRAIN adds persistent memory and learning to any LLM. The 3B model with BRAIN has capabilities the 14B model lacks entirely.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 8: BRAIN vs Other LLMs (Memory & Emergent Capabilities) -->
+        <section class="slide">
+            <div class="slide-content">
+                <h2>📊 BRAIN vs Other LLMs: Memory & Emergence</h2>
+                <p style="margin-bottom: 20px;">We benchmarked <strong>Qwen2.5-3B + BRAIN</strong> against leading open-weight models on <strong>cross-session memory, identity binding, and emergent capabilities</strong>.</p>
 
                 <!-- Bar Chart: Cross-Session Memory -->
                 <div class="chart-container">
@@ -695,58 +804,15 @@
                     </div>
                 </div>
 
-                <!-- Key Metrics Cards -->
-                <div class="metric-grid">
-                    <div class="metric-card"><div class="metric-value">2 turns</div><div class="metric-label">Identity binding (BRAIN vs 5+ turns for 3B)</div></div>
-                    <div class="metric-card"><div class="metric-value">8%</div><div class="metric-label">Hallucination rate (vs 34% for 3B)</div></div>
-                    <div class="metric-card"><div class="metric-value">10x</div><div class="metric-label">Parameter efficiency (30B equivalent)</div></div>
-                    <div class="metric-card"><div class="metric-value">75%</div><div class="metric-label">Long-form coherence (vs 30% for 3B)</div></div>
-                </div>
-
-                <!-- Full Benchmark Table -->
-                <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr><th>Benchmark Task</th><th>Qwen2.5-3B (vanilla)</th><th>Llama 2 13B</th><th>Qwen2.5-14B</th><th>⚡ Qwen2.5-3B + BRAIN</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>Cross-session memory (24h gap)</td><td>22% ❌</td><td>45% ⚠️</td><td>50% ⚠️</td><td class="highlight">88% ✅</td></tr>
-                            <tr><td>Identity binding (corrections needed)</td><td>&gt;5 turns</td><td>3-4 turns</td><td>3 turns</td><td class="highlight">2 turns</td></tr>
-                            <tr><td>Long-form coherence (50+ tokens)</td><td>30%</td><td>65%</td><td>68%</td><td class="highlight">75%</td></tr>
-                            <tr><td>Spontaneous recall (zero-shot)</td><td>15%</td><td>40%</td><td>42%</td><td class="highlight">90%</td></tr>
-                            <tr><td>Hallucination rate (memory-related)</td><td>34%</td><td>18%</td><td>15%</td><td class="highlight">8%</td></tr>
-                            <tr><td><strong>Parameter Efficiency</strong></td><td>1x</td><td>4.3x</td><td>4.7x</td><td class="highlight">10x (effective 30B equiv)</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <!-- Latency vs Memory Trade-off Table -->
-                <div class="chart-container">
-                    <h3 style="text-align: center; margin-bottom: 20px;">⏱️ Latency vs Memory Retention (lower latency + higher memory = better)</h3>
-                    <div class="table-container" style="margin: 0;">
-                        <table>
-                            <thead><tr><th>Model</th><th>Relative Latency (lower is better)</th><th>Memory Retention Score</th><th>Quadrant</th></tr></thead>
-                            <tbody>
-                                <tr><td>Qwen 3B</td><td>0.68</td><td>22</td><td>Low Memory + High Latency</td></tr>
-                                <tr><td>Llama 13B</td><td>0.45</td><td>45</td><td>Medium Memory + Medium Latency</td></tr>
-                                <tr><td>Qwen 14B</td><td>0.42</td><td>50</td><td>Medium Memory + Low Latency</td></tr>
-                                <tr><td>GPT-3.5</td><td>0.38</td><td>48</td><td>Medium Memory + Low Latency</td></tr>
-                                <tr style="background: rgba(168,85,247,0.3);"><td><strong>⚡ BRAIN (ours)</strong></td><td>0.58</td><td class="highlight">88</td><td class="highlight">✨ High Memory + Medium Latency (Sweet Spot)</td></tr>
-                                <tr><td>Llama 70B</td><td>0.28</td><td>72</td><td>High Memory + Low Latency</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
                 <div class="card" style="margin-top: 20px; background: rgba(168,85,247,0.2); border-color: #a855f7;">
-                    <div class="card-title">🔬 Key Insight from Our Experiment</div>
-                    <p><strong>Qwen2.5-3B + BRAIN</strong> achieves <strong>13B-class reasoning</strong> and <strong>70B-class memory retention</strong> at 3B inference cost. The Hebbian plasticity and VNI mesh enable spontaneous recall that no static-weight model can match.</p>
+                    <div class="card-title">🔬 Key Insight</div>
+                    <p><strong>Qwen2.5-3B + BRAIN</strong> achieves <strong>13B-class memory retention</strong> at 3B inference cost. The Hebbian plasticity and VNI mesh enable spontaneous recall that no static-weight model can match.</p>
                     <p style="margin-top: 12px; color: #c084fc;">📌 <strong>The gap widens with longer conversations:</strong> BRAIN's memory improves with use; other models degrade as context fills.</p>
                 </div>
             </div>
         </section>
 
-        <!-- SLIDE 8: BRAIN Avoids False Recall -->
+        <!-- SLIDE 9: BRAIN Avoids False Recall -->
         <section class="slide">
             <div class="slide-content">
                 <h2>🧠 BRAIN Avoids False Recall</h2>
@@ -757,12 +823,12 @@
             </div>
         </section>
 
-        <!-- SLIDE 9: RAG + Vector DB vs BRAIN -->
+        <!-- SLIDE 10: RAG + Vector DB vs BRAIN -->
         <section class="slide">
             <div class="slide-content">
                 <h2>📊 RAG + Vector DB vs BRAIN</h2>
                 <div class="table-container comparison-table">
-                    </table>
+                    <table>
                         <thead><tr><th>Aspect</th><th>RAG + Vector DB</th><th>BRAIN</th></tr></thead>
                         <tbody>
                             <tr><td>Storage</th><td>External vector database</th><td class="brain-highlight">In-memory VNI tree + synapses</td></tr>
@@ -778,7 +844,7 @@
             </div>
         </section>
 
-        <!-- SLIDE 10: Competitive Positioning -->
+        <!-- SLIDE 11: Competitive Positioning -->
         <section class="slide">
             <div class="slide-content">
                 <h2>🏆 Why BRAIN is Different</h2>
@@ -787,7 +853,7 @@
                         <thead><tr><th>Solution</th><th>Memory Type</th><th>Spontaneous Recall</th><th>Cross-Session Memory</th></tr></thead>
                         <tbody>
                             <tr><td>Fine-tuning</th><td>Model weights</th><td>❌ No</th><td>❌ No</th></tr>
-                            <tr>}RAG</th><td>External DB</th><td>❌ No</th><td>❌ No</th></tr>
+                            <tr><td>RAG</th><td>External DB</th><td>❌ No</th><td>❌ No</th></tr>
                             <tr style="background: rgba(168,85,247,0.2);"><td><strong>BRAIN</strong></th><td><strong>VNI Network</strong></th><td><strong>✅ Yes</strong></th><td><strong>✅ Yes</strong></th></tr>
                         </tbody>
                     </table>
@@ -795,7 +861,7 @@
             </div>
         </section>
 
-        <!-- SLIDE 11: BRAIN for DiT Video Generators -->
+        <!-- SLIDE 12: BRAIN for DiT Video Generators -->
         <section class="slide">
             <div class="slide-content">
                 <h2>🎬 Beyond LLMs: BRAIN for DiT Video Generators</h2>
@@ -821,7 +887,7 @@
             </div>
         </section>
 
-        <!-- SLIDE 12: Economics -->
+        <!-- SLIDE 13: Economics -->
         <section class="slide">
             <div class="slide-content">
                 <h2>📊 The Math</h2>
@@ -840,7 +906,7 @@
             </div>
         </section>
 
-        <!-- SLIDE 13: Business Model -->
+        <!-- SLIDE 14: Business Model -->
         <section class="slide">
             <div class="slide-content">
                 <h2>💼 Business Model</h2>
@@ -852,7 +918,7 @@
             </div>
         </section>
 
-        <!-- SLIDE 14: Market Opportunity -->
+        <!-- SLIDE 15: Market Opportunity -->
         <section class="slide">
             <div class="slide-content">
                 <h2>🌍 Total Addressable Market</h2>
@@ -861,15 +927,15 @@
                         <thead><tr><th>Segment</th><th>Size</th><th>BRAIN Opportunity</th></tr></thead>
                         <tbody>
                             <tr><td>LLM Providers (API)</th><td>500+</th><td>$500M-$1B</th></tr>
-                            <tr>}<td class="highlight">DiT Video Gen</td><td class="highlight">200+ studios</td><td class="highlight">$1B+</td></tr>
-                            <tr>}<td class="highlight"><strong>TOTAL TAM</strong></td><td class="highlight"> </td><td class="highlight"><strong>$6B-$11B</strong></td></tr>
+                            <tr><td class="highlight">DiT Video Gen</td><td class="highlight">200+ studios</td><td class="highlight">$1B+</td></tr>
+                            <tr><td class="highlight"><strong>TOTAL TAM</strong></td><td class="highlight"> </td><td class="highlight"><strong>$6B-$11B</strong></td></tr>
                         </tbody>
                     </table>
                 </div>
             </div>
         </section>
 
-        <!-- SLIDE 15: Current Status -->
+        <!-- SLIDE 16: Current Status -->
         <section class="slide">
             <div class="slide-content">
                 <h2>📌 Current Status</h2>
@@ -880,7 +946,7 @@
             </div>
         </section>
 
-        <!-- SLIDE 16: The Ask -->
+        <!-- SLIDE 17: The Ask -->
         <section class="slide">
             <div class="slide-content">
                 <h2>🎯 The Ask</h2>
@@ -895,7 +961,7 @@
             </div>
         </section>
 
-        <!-- SLIDE 17: Closing -->
+        <!-- SLIDE 18: Closing -->
         <section class="slide">
             <div class="slide-content" style="text-align: center;">
                 <div style="font-size: 4rem; margin-bottom: 1rem;">🧠</div>
