@@ -600,7 +600,7 @@
                     </iframe>
                 </div>
                 <p style="font-size: 0.95rem; color: #c4b5fd; margin-bottom: 20px;">Watch the live demo: Standard Qwen2.5 vs Qwen2.5 + BRAIN — Persistent memory in action</p>
-                
+
                 <!-- 新视频 2：高级功能 -->
                 <div class="video-container" style="margin-top: 30px;">
                     <iframe src="https://www.youtube.com/embed/WSAjhtf4H7s"
@@ -784,60 +784,60 @@
             </div>
         </section>
 
-        <!-- SLIDE 8: BRAIN vs 其他大语言模型 - 记忆与涌现能力 -->
+        <!-- SLIDE 8: BRAIN vs 基础 Qwen - 实际基准测试结果 -->
         <section class="slide">
             <div class="slide-content">
-                <h2>📊 BRAIN vs 其他大语言模型：记忆与涌现</h2>
-                <p style="margin-bottom: 20px;">我们将 <strong>Qwen2.5-3B + BRAIN</strong> 与领先的开源模型在<strong>跨会话记忆、身份绑定和涌现能力</strong>上进行了对比。</p>
+                <h2>📊 BRAIN vs 基础 Qwen：跨会话记忆测试</h2>
+                <p style="margin-bottom: 20px;">我们通过 <strong>角色扮演（RolePlay）自对话测试</strong>，对比了 <strong>Qwen2.5-3B + BRAIN</strong> 和 <strong>原始 Qwen2.5-3B</strong> 在跨会话回忆个人事实和技术概念上的表现。两个模型接受相同的对话上下文，然后在 <strong>会话边界</strong>（<code>new_session()</code>）后进行测试。</p>
 
                 <div class="chart-container">
-                    <h3 style="text-align: center; margin-bottom: 20px;">🧠 跨会话记忆（24小时间隔后正确回忆率）</h3>
-                    <div class="bar-chart">
-                        <div class="bar-item">
-                            <div class="bar-label"><span>Qwen2.5-3B（原始）</span><span>22%</span></div>
-                            <div class="bar-bg"><div class="bar-fill" style="width: 22%; background: linear-gradient(90deg, #ef4444, #f97316);">22%</div></div>
-                        </div>
-                        <div class="bar-item">
-                            <div class="bar-label"><span>Llama 2 13B</span><span>45%</span></div>
-                            <div class="bar-bg"><div class="bar-fill" style="width: 45%; background: linear-gradient(90deg, #f59e0b, #eab308);">45%</div></div>
-                        </div>
-                        <div class="bar-item">
-                            <div class="bar-label"><span>Qwen2.5-14B</span><span>50%</span></div>
-                            <div class="bar-bg"><div class="bar-fill" style="width: 50%; background: linear-gradient(90deg, #eab308, #84cc16);">50%</div></div>
-                        </div>
-                        <div class="bar-item">
-                            <div class="bar-label"><span>⚡ Qwen2.5-3B + BRAIN</span><span>88%</span></div>
-                            <div class="bar-bg"><div class="bar-fill" style="width: 88%; background: linear-gradient(90deg, #22c55e, #a855f7);">88% ✅</div></div>
-                        </div>
+                    <h3 style="text-align: center; margin-bottom: 20px;">🧠 会话清空后的记忆保留情况</h3>
+                    <div class="table-container" style="margin: 0;">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>记忆检查项</th>
+                                    <th>基础 Qwen2.5-3B</th>
+                                    <th>⚡ BRAIN + Qwen2.5-3B</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>记得“David”</strong>（用户名）</td>
+                                    <td>✅ 是</td>
+                                    <td class="highlight">✅ 是</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>记得“BRAIN”</strong>（架构名）</td>
+                                    <td>✅ 是</td>
+                                    <td class="highlight">✅ 是</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>记得“VNI”</strong>（技术概念）</td>
+                                    <td>❌ 否（错记为“CNN”）</td>
+                                    <td class="highlight">✅ 是（正确回忆）</td>
+                                </tr>
+                                <tr style="border-top: 2px solid rgba(168,85,247,0.4);">
+                                    <td><strong>总体记忆得分</strong></td>
+                                    <td><span style="color: #f59e0b;">67%</span></td>
+                                    <td class="highlight"><strong>100%</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
 
-                <div class="chart-container">
-                    <h3 style="text-align: center; margin-bottom: 20px;">⚡ 自发回忆率（零样本，无需提示）</h3>
-                    <div class="bar-chart">
-                        <div class="bar-item">
-                            <div class="bar-label"><span>Qwen2.5-3B（原始）</span><span>15%</span></div>
-                            <div class="bar-bg"><div class="bar-fill" style="width: 15%; background: linear-gradient(90deg, #ef4444, #f97316);">15%</div></div>
-                        </div>
-                        <div class="bar-item">
-                            <div class="bar-label"><span>Llama 2 13B</span><span>40%</span></div>
-                            <div class="bar-bg"><div class="bar-fill" style="width: 40%; background: linear-gradient(90deg, #f59e0b, #eab308);">40%</div></div>
-                        </div>
-                        <div class="bar-item">
-                            <div class="bar-label"><span>Qwen2.5-14B</span><span>42%</span></div>
-                            <div class="bar-bg"><div class="bar-fill" style="width: 42%; background: linear-gradient(90deg, #eab308, #84cc16);">42%</div></div>
-                        </div>
-                        <div class="bar-item">
-                            <div class="bar-label"><span>⚡ Qwen2.5-3B + BRAIN</span><span>90%</span></div>
-                            <div class="bar-bg"><div class="bar-fill" style="width: 90%; background: linear-gradient(90deg, #22c55e, #a855f7);">90% ✅</div></div>
-                        </div>
+                <div class="badge-honest" style="margin-top: 20px;">
+                    <div class="icon">📌</div>
+                    <div class="content">
+                        <strong>测试详情：</strong> 进行 15 轮角色扮演对话（David ↔ Gwen），然后通过 <code>new_session()</code> 清除上下文窗口。模型被要求回忆之前的讨论。基础 Qwen 只能给出“深度学习”和“CNN”等泛泛内容，而 BRAIN+Qwen 正确回忆了 <strong>“VNI”</strong>、<strong>“NeuroArch”</strong> 以及架构的具体细节。
                     </div>
                 </div>
 
                 <div class="card" style="margin-top: 20px; background: rgba(168,85,247,0.2); border-color: #a855f7;">
                     <div class="card-title">🔬 关键洞察</div>
-                    <p><strong>Qwen2.5-3B + BRAIN</strong> 以 3B 的推理成本实现了 <strong>13B 级别的记忆保留能力</strong>。赫布可塑性和 VNI 网格实现了任何静态权重模型都无法比拟的自发回忆能力。</p>
-                    <p style="margin-top: 12px; color: #c084fc;">📌 <strong>随着对话变长，差距会进一步扩大：</strong> BRAIN 的记忆会随着使用而改善；而其他模型随着上下文窗口填满性能会下降。</p>
+                    <p><strong>BRAIN+Qwen 在三个记忆检查项上均获得满分（100%）</strong>，而基础 Qwen 只获得 67% —— 并且未能通过最困难的技术术语（<strong>VNI</strong>）检查。这证明 BRAIN 的赫布学习和 VNI 网格能够提供 <strong>真实、具体的回忆</strong>，这是静态模型无法复制的。</p>
+                    <p style="margin-top: 12px; color: #c084fc;">📌 <strong>重要意义：</strong> BRAIN 不仅“记住”模糊的概念，它还能跨会话保留 <strong>精确的技术术语</strong>，从而避免用户重复解释关键细节。</p>
                 </div>
             </div>
         </section>

@@ -600,7 +600,7 @@
                     </iframe>
                 </div>
                 <p style="font-size: 0.95rem; color: #c4b5fd; margin-bottom: 20px;">Watch the live demo: Standard Qwen2.5 vs Qwen2.5 + BRAIN — Persistent memory in action</p>
-                
+
                 <!-- New Video 2: Advanced Capabilities -->
                 <div class="video-container" style="margin-top: 30px;">
                     <iframe src="https://www.youtube.com/embed/WSAjhtf4H7s"
@@ -784,60 +784,60 @@
             </div>
         </section>
 
-        <!-- SLIDE 8: BRAIN vs Other LLMs -->
+        <!-- SLIDE 8: BRAIN vs Other LLMs - Actual Benchmark Results -->
         <section class="slide">
             <div class="slide-content">
-                <h2>📊 BRAIN vs Other LLMs: Memory & Emergence</h2>
-                <p style="margin-bottom: 20px;">We benchmarked <strong>Qwen2.5-3B + BRAIN</strong> against leading open-weight models on <strong>cross-session memory, identity binding, and emergent capabilities</strong>.</p>
+                <h2>📊 BRAIN vs Base Qwen: Cross‑Session Memory Test</h2>
+                <p style="margin-bottom: 20px;">We ran a <strong>RolePlay self‑play test</strong> comparing <strong>Qwen2.5-3B + BRAIN</strong> against <strong>vanilla Qwen2.5-3B</strong> on cross‑session recall of personal facts and technical concepts. Both models were given the same conversation context, then tested after a <strong>session boundary</strong> (<code>new_session()</code>).</p>
 
                 <div class="chart-container">
-                    <h3 style="text-align: center; margin-bottom: 20px;">🧠 Cross-Session Memory (24h gap recall rate)</h3>
-                    <div class="bar-chart">
-                        <div class="bar-item">
-                            <div class="bar-label"><span>Qwen2.5-3B (vanilla)</span><span>22%</span></div>
-                            <div class="bar-bg"><div class="bar-fill" style="width: 22%; background: linear-gradient(90deg, #ef4444, #f97316);">22%</div></div>
-                        </div>
-                        <div class="bar-item">
-                            <div class="bar-label"><span>Llama 2 13B</span><span>45%</span></div>
-                            <div class="bar-bg"><div class="bar-fill" style="width: 45%; background: linear-gradient(90deg, #f59e0b, #eab308);">45%</div></div>
-                        </div>
-                        <div class="bar-item">
-                            <div class="bar-label"><span>Qwen2.5-14B</span><span>50%</span></div>
-                            <div class="bar-bg"><div class="bar-fill" style="width: 50%; background: linear-gradient(90deg, #eab308, #84cc16);">50%</div></div>
-                        </div>
-                        <div class="bar-item">
-                            <div class="bar-label"><span>⚡ Qwen2.5-3B + BRAIN</span><span>88%</span></div>
-                            <div class="bar-bg"><div class="bar-fill" style="width: 88%; background: linear-gradient(90deg, #22c55e, #a855f7);">88% ✅</div></div>
-                        </div>
+                    <h3 style="text-align: center; margin-bottom: 20px;">🧠 Memory Retention After Session Clear</h3>
+                    <div class="table-container" style="margin: 0;">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Memory Check</th>
+                                    <th>Base Qwen2.5-3B</th>
+                                    <th>⚡ BRAIN + Qwen2.5-3B</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Remembers "David"</strong> (user name)</td>
+                                    <td>✅ Yes</td>
+                                    <td class="highlight">✅ Yes</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Remembers "BRAIN"</strong> (architecture name)</td>
+                                    <td>✅ Yes</td>
+                                    <td class="highlight">✅ Yes</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Remembers "VNI"</strong> (technical concept)</td>
+                                    <td>❌ No (hallucinated "CNN")</td>
+                                    <td class="highlight">✅ Yes (correct recall)</td>
+                                </tr>
+                                <tr style="border-top: 2px solid rgba(168,85,247,0.4);">
+                                    <td><strong>Overall Memory Score</strong></td>
+                                    <td><span style="color: #f59e0b;">67%</span></td>
+                                    <td class="highlight"><strong>100%</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
 
-                <div class="chart-container">
-                    <h3 style="text-align: center; margin-bottom: 20px;">⚡ Spontaneous Recall (zero-shot, no prompting)</h3>
-                    <div class="bar-chart">
-                        <div class="bar-item">
-                            <div class="bar-label"><span>Qwen2.5-3B (vanilla)</span><span>15%</span></div>
-                            <div class="bar-bg"><div class="bar-fill" style="width: 15%; background: linear-gradient(90deg, #ef4444, #f97316);">15%</div></div>
-                        </div>
-                        <div class="bar-item">
-                            <div class="bar-label"><span>Llama 2 13B</span><span>40%</span></div>
-                            <div class="bar-bg"><div class="bar-fill" style="width: 40%; background: linear-gradient(90deg, #f59e0b, #eab308);">40%</div></div>
-                        </div>
-                        <div class="bar-item">
-                            <div class="bar-label"><span>Qwen2.5-14B</span><span>42%</span></div>
-                            <div class="bar-bg"><div class="bar-fill" style="width: 42%; background: linear-gradient(90deg, #eab308, #84cc16);">42%</div></div>
-                        </div>
-                        <div class="bar-item">
-                            <div class="bar-label"><span>⚡ Qwen2.5-3B + BRAIN</span><span>90%</span></div>
-                            <div class="bar-bg"><div class="bar-fill" style="width: 90%; background: linear-gradient(90deg, #22c55e, #a855f7);">90% ✅</div></div>
-                        </div>
+                <div class="badge-honest" style="margin-top: 20px;">
+                    <div class="icon">📌</div>
+                    <div class="content">
+                        <strong>Test Details:</strong> 15‑turn RolePlay conversation (David ↔ Gwen), followed by <code>new_session()</code> to clear the context window. The model was then prompted to recall the previous discussion. Base Qwen defaulted to generic "deep learning" and "CNNs", while BRAIN+Qwen correctly recalled <strong>"VNI"</strong>, <strong>"NeuroArch"</strong>, and specific details about the architecture.
                     </div>
                 </div>
 
                 <div class="card" style="margin-top: 20px; background: rgba(168,85,247,0.2); border-color: #a855f7;">
                     <div class="card-title">🔬 Key Insight</div>
-                    <p><strong>Qwen2.5-3B + BRAIN</strong> achieves <strong>13B-class memory retention</strong> at 3B inference cost. The Hebbian plasticity and VNI mesh enable spontaneous recall that no static-weight model can match.</p>
-                    <p style="margin-top: 12px; color: #c084fc;">📌 <strong>The gap widens with longer conversations:</strong> BRAIN's memory improves with use; other models degrade as context fills.</p>
+                    <p><strong>BRAIN+Qwen achieved a perfect memory score (100%)</strong> on all three checks, while Base Qwen only managed 67% — and failed the most challenging technical term (<strong>VNI</strong>). This demonstrates that BRAIN’s Hebbian learning and VNI mesh provide <strong>genuine, specific recall</strong> that a static model cannot replicate.</p>
+                    <p style="margin-top: 12px; color: #c084fc;">📌 <strong>Why it matters:</strong> BRAIN doesn’t just “remember” vague concepts — it preserves <strong>exact technical terminology</strong> across sessions, eliminating the need for users to re‑explain critical details.</p>
                 </div>
             </div>
         </section>
